@@ -1,0 +1,4096 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Amazon%20CloudWatch/">
+      
+      
+        <link rel="next" href="../AWS%20CloudTrail/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>AWS CloudFormation - AWS Solution Architect Associate Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-cloudformation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AWS Solution Architect Associate Notes" class="md-header__button md-logo" aria-label="AWS Solution Architect Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solution Architect Associate Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS CloudFormation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TechiKrish/aws-saa-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ⭐ Give me Star
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AWS Solution Architect Associate Notes" class="md-nav__button md-logo" aria-label="AWS Solution Architect Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Solution Architect Associate Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TechiKrish/aws-saa-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ⭐ Give me Star
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Analytics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Analytics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20Athena/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Athena
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20EMR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EMR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20Kinesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Kinesis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/AWS%20Glue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Glue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Application Integration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Application Integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20EventBridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EventBridge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20MQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon MQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20Simple%20Notification%20Service%20%28Amazon%20SNS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Simple Notification Service (Amazon SNS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20Simple%20Queue%20Service%20%28Amazon%20SQS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Simple Queue Service (Amazon SQS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/AWS%20Step%20Functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Step Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS Cost Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            AWS Cost Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AWS%20Cost%20Management/AWS%20Cost%20Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Cost Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Compute
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Compute
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Batch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Outposts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Outposts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Serverless%20Application%20Repository/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Serverless Application Repository
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Wavelength/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Wavelength
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/EC2%20Auto%20Scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2 Auto Scaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/EC2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/Elastic%20Beanstalk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Elastic Beanstalk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/VMware%20Cloud%20on%20AWS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VMware Cloud on AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Containers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Containers/Containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Athena/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Athena
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Aurora
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20DocumentDB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon DocumentDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20ElastiCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ElastiCache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Keyspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Keyspaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Neptune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Neptune
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20RDS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon RDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Redshift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Redshift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/dynamo%20db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DynamoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security, Identity, and Compliance
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Security, Identity, and Compliance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Cognito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Cognito
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20GuardDuty/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Inspector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Inspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Macie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Macie
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Certificate%20Manager%20%28ACM%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Certificate Manager (ACM)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Identity%20and%20Access%20Management%20%28IAM%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Identity and Access Management (IAM)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Key%20Management%20Service%20%28AWS%20KMS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Key Management Service (AWS KMS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Secrets%20Manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Secrets Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Shield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Shield
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Web%20Application%20Firewall%20%28AWS%20WAF%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Web Application Firewall (AWS WAF)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Serverless
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Serverless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20AppSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS AppSync
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20Fargate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Fargate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20Lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Lambda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Storage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20EBS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EBS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20EFS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EFS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20FSx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon FSx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20Backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20S3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS S3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20Storage%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Storage Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Front-End Web and Mobile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Front-End Web and Mobile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/Amazon%20API%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon API Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/AWS%20Amplify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Amplify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Machine Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machine%20Learning/Machine%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Management and Governance
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Management and Governance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20CloudWatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFormation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFormation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-cloudformation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS CloudFormation Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cloudformation-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. CloudFormation Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cloudformation-performance-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. CloudFormation Performance Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Latency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Throughput
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cloudformation-resilience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. CloudFormation Resilience Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-azregion-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-AZ/Region Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rollback and Recovery:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drift-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drift Detection:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Auditing:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cloudformation-security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. CloudFormation Security Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auditing:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cloudformation-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. CloudFormation Cost Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pricing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pricing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cloudformation-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. CloudFormation Advanced Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhanced-stacksets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhanced StackSets:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improved-drift-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improved Drift Detection:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-hub-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Hub Integration:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nested-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nested Stacks:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Sets:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Resources:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cloudformation-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. CloudFormation Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-tier-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Tier Application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-accountregion-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Account/Region Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devprod-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dev/Prod Environments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cloudformation-vs-other-iac-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. CloudFormation vs. Other IaC Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-detailed-explanations-for-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Detailed Explanations for Mastery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-quick-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Quick Reference Table
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20CloudTrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Control%20Tower/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Control Tower
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Organizations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Organizations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Systems%20Manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Systems Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Trusted%20Advisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Trusted Advisor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Media Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Media Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Media%20Services/Media%20Services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Media Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Migration and Transfer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Migration and Transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migration%20and%20Transfer/Migration%20and%20Transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration and Transfer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Networking and Content Delivery
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Networking and Content Delivery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/Amazon%20Route%2053/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Route 53
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/Amazon%20VPC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon VPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Client%20VPN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Client VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Cloudfront/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFront
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Direct%20Connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Direct Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Elastic%20Load%20Balancing%20%28ELB%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Elastic Load Balancing (ELB)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Global%20Accelerator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Global Accelerator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20PrivateLink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS PrivateLink
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Site-to-Site%20VPN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Site-to-Site VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Transit%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Transit Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-cloudformation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS CloudFormation Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cloudformation-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. CloudFormation Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cloudformation-performance-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. CloudFormation Performance Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Latency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Throughput
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cloudformation-resilience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. CloudFormation Resilience Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-azregion-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-AZ/Region Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rollback and Recovery:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drift-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drift Detection:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Auditing:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cloudformation-security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. CloudFormation Security Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auditing:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cloudformation-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. CloudFormation Cost Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pricing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pricing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cloudformation-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. CloudFormation Advanced Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhanced-stacksets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhanced StackSets:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improved-drift-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improved Drift Detection:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-hub-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Hub Integration:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nested-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nested Stacks:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Sets:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Resources:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cloudformation-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. CloudFormation Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-tier-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Tier Application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-accountregion-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Account/Region Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devprod-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dev/Prod Environments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cloudformation-vs-other-iac-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. CloudFormation vs. Other IaC Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-detailed-explanations-for-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Detailed Explanations for Mastery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-quick-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Quick Reference Table
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-cloudformation">AWS CloudFormation</h1>
+<h3 id="aws-cloudformation-overview"><strong>AWS CloudFormation Overview</strong></h3>
+<ul>
+<li><strong>Definition</strong>: AWS CloudFormation is a managed service for provisioning and managing AWS resources using infrastructure as code (IaC) through declarative templates in JSON or YAML.</li>
+<li><strong>Key Features</strong>:<ul>
+<li>Defines resources (e.g., EC2, S3, RDS) in templates for consistent, repeatable deployments.</li>
+<li>Supports stack creation, updates, deletion, and drift detection.</li>
+<li>Integrates with most AWS services, IAM for access control, and StackSets for multi-account/Region deployments.</li>
+<li>Provides rollback, change sets, and intrinsic functions for dynamic configurations.</li>
+</ul>
+</li>
+<li><strong>Use Cases</strong>: Automate infrastructure deployment, manage multi-tier applications, replicate environments, ensure compliance.</li>
+<li><strong>Key Updates (2024–2025)</strong>:<ul>
+<li><strong>Enhanced StackSets</strong>: Simplified multi-account/Region deployments (October 2024).</li>
+<li><strong>Improved Drift Detection</strong>: Faster identification of configuration changes (March 2024).</li>
+<li><strong>FIPS 140-2 Compliance</strong>: Enhanced for GovCloud (October 2024).</li>
+<li><strong>Integration with AWS Security Hub</strong>: Detect non-compliant stack configurations (January 2025).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="1-cloudformation-core-concepts"><strong>1. CloudFormation Core Concepts</strong></h3>
+<h3 id="components"><strong>Components</strong></h3>
+<ul>
+<li><strong>Template</strong>:<ul>
+<li>JSON/YAML file defining AWS resources, parameters, mappings, and outputs.</li>
+<li>Sections: AWSTemplateFormatVersion, Description, Parameters, Mappings, Conditions, Resources, Outputs.</li>
+<li><strong>Explanation</strong>: E.g., template creates EC2 instance and S3 bucket.</li>
+</ul>
+</li>
+<li><strong>Stack</strong>:<ul>
+<li>Collection of AWS resources created, updated, or deleted based on a template.</li>
+<li>Managed as a single unit.</li>
+<li><strong>Explanation</strong>: E.g., stack deploys VPC, EC2, and RDS.</li>
+</ul>
+</li>
+<li><strong>StackSet</strong>:<ul>
+<li>Extends stacks to multiple accounts and Regions within AWS Organizations.</li>
+<li><strong>Explanation</strong>: E.g., deploy VPC across 10 accounts in us-east-1, us-west-2.</li>
+</ul>
+</li>
+<li><strong>Change Set</strong>:<ul>
+<li>Preview of changes before updating a stack (e.g., add EC2 instance).</li>
+<li><strong>Explanation</strong>: E.g., review impact of adding security group rule.</li>
+</ul>
+</li>
+<li><strong>Drift Detection</strong>:<ul>
+<li>Identifies differences between stack’s template and actual resource configurations.</li>
+<li><strong>Explanation</strong>: E.g., detect manual change to EC2 instance type.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-concepts"><strong>Key Concepts</strong></h3>
+<ul>
+<li><strong>Resources</strong>:<ul>
+<li>AWS components defined in templates (e.g., AWS::EC2::Instance, AWS::S3::Bucket).</li>
+<li>Mandatory section; supports ~700 resource types.</li>
+<li><strong>Explanation</strong>: E.g., define AWS::RDS::DBInstance for Aurora.</li>
+</ul>
+</li>
+<li><strong>Parameters</strong>:<ul>
+<li>User inputs to customize templates (e.g., instance type, DB name).</li>
+<li>Supports constraints (e.g., allowed values).</li>
+<li><strong>Explanation</strong>: E.g., parameter for EC2 instance type (t3.micro, t3.small).</li>
+</ul>
+</li>
+<li><strong>Mappings</strong>:<ul>
+<li>Key-value pairs for conditional logic (e.g., Region-specific AMIs).</li>
+<li><strong>Explanation</strong>: E.g., map Region to AMI ID (us-east-1: ami-123, us-west-2: ami-456).</li>
+</ul>
+</li>
+<li><strong>Conditions</strong>:<ul>
+<li>Logic to control resource creation (e.g., create resource in prod environment).</li>
+<li><strong>Explanation</strong>: E.g., deploy larger EC2 instance for prod vs. dev.</li>
+</ul>
+</li>
+<li><strong>Outputs</strong>:<ul>
+<li>Values returned after stack creation (e.g., EC2 public IP, RDS endpoint).</li>
+<li><strong>Explanation</strong>: E.g., output ALB DNS name for app access.</li>
+</ul>
+</li>
+<li><strong>Intrinsic Functions</strong>:<ul>
+<li>Dynamic template logic (e.g., Ref, Fn::GetAtt, Fn::Join, Fn::Sub).</li>
+<li><strong>Explanation</strong>: E.g., Ref: MyParameter retrieves parameter value.</li>
+</ul>
+</li>
+<li><strong>Rollback</strong>:<ul>
+<li>Reverts stack to last known state on failure.</li>
+<li><strong>Explanation</strong>: E.g., rollback if RDS creation fails due to invalid parameter.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-notes"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Exam Relevance</strong>: Understand templates, stacks, StackSets, drift detection, and intrinsic functions.</li>
+<li><strong>Mastery Tip</strong>: Compare CloudFormation vs. Terraform vs. AWS CDK for IaC.</li>
+</ul>
+<hr />
+<h3 id="2-cloudformation-performance-features"><strong>2. CloudFormation Performance Features</strong></h3>
+<p>CloudFormation optimizes infrastructure deployment.</p>
+<h3 id="low-latency"><strong>Low Latency</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Fast stack operations.</li>
+<li><strong>Features</strong>:<ul>
+<li>Parallel resource creation where possible (e.g., EC2 and S3 concurrently).</li>
+<li>Optimized API calls for stack updates.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., deploy VPC and subnets in &lt;5 minutes.</li>
+<li><strong>Exam Tip</strong>: Highlight parallel creation for speed.</li>
+</ul>
+<h3 id="high-throughput"><strong>High Throughput</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Handle complex stacks.</li>
+<li><strong>Features</strong>:<ul>
+<li>Supports hundreds of resources per stack (max 500 resources).</li>
+<li>Processes multiple stack operations concurrently.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., deploy 100 EC2 instances in one stack.</li>
+<li><strong>Exam Tip</strong>: Use for large-scale deployments.</li>
+</ul>
+<h3 id="scalability"><strong>Scalability</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Support growing infrastructures.</li>
+<li><strong>Features</strong>:<ul>
+<li>StackSets scale to thousands of accounts/Regions (enhanced 2024).</li>
+<li>Nested stacks modularize complex templates.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., deploy app across 10 Regions via StackSet.</li>
+<li><strong>Exam Tip</strong>: Use StackSets for enterprise scalability.</li>
+</ul>
+<h3 id="key-notes_1"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Performance</strong>: Parallel creation + high throughput + StackSets = efficient IaC.</li>
+<li><strong>Exam Tip</strong>: Emphasize CloudFormation for scalable deployments.</li>
+</ul>
+<hr />
+<h3 id="3-cloudformation-resilience-features"><strong>3. CloudFormation Resilience Features</strong></h3>
+<p>Resilience ensures reliable infrastructure management.</p>
+<h3 id="multi-azregion-deployment"><strong>Multi-AZ/Region Deployment</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Survive failures.</li>
+<li><strong>Features</strong>:<ul>
+<li>Deploys resources across AZs (e.g., VPC subnets, RDS Multi-AZ).</li>
+<li>StackSets for multi-Region consistency.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., deploy ALB across us-east-1a, us-east-1b.</li>
+<li><strong>Exam Tip</strong>: Use StackSets for multi-Region resilience.</li>
+</ul>
+<h3 id="rollback-and-recovery"><strong>Rollback and Recovery</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Handle deployment failures.</li>
+<li><strong>Features</strong>:<ul>
+<li>Automatic rollback on stack creation/update failure.</li>
+<li>Stack rollback triggers to preserve resources.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., rollback if EC2 launch fails due to quota.</li>
+<li><strong>Exam Tip</strong>: Highlight rollback for reliability.</li>
+</ul>
+<h3 id="drift-detection"><strong>Drift Detection</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Ensure configuration consistency.</li>
+<li><strong>Features</strong>:<ul>
+<li>Detects manual changes to stack resources (improved 2024).</li>
+<li>Reports drift status (e.g., modified, deleted).</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., detect changed S3 bucket policy.</li>
+<li><strong>Exam Tip</strong>: Use drift detection for compliance.</li>
+</ul>
+<h3 id="monitoring-and-auditing"><strong>Monitoring and Auditing</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Track stack operations.</li>
+<li><strong>Features</strong>:<ul>
+<li>CloudTrail logs API calls (e.g., CreateStack, UpdateStack).</li>
+<li>Security Hub detects non-compliant stacks (new 2025).</li>
+<li>CloudWatch metrics for stack events.</li>
+<li><strong>Explanation</strong>: E.g., alarm on stack creation failures.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Use CloudTrail and Security Hub for resilience.</li>
+</ul>
+<h3 id="key-notes_2"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Resilience</strong>: Multi-AZ + rollback + drift detection + monitoring = reliable IaC.</li>
+<li><strong>Exam Tip</strong>: Design resilient stacks with StackSets and drift detection.</li>
+</ul>
+<hr />
+<h3 id="4-cloudformation-security-features"><strong>4. CloudFormation Security Features</strong></h3>
+<p>Security is a key focus for CloudFormation in SAA-C03.</p>
+<h3 id="access-control"><strong>Access Control</strong></h3>
+<ul>
+<li><strong>IAM Policies</strong>:<ul>
+<li>Control stack operations (cloudformation:CreateStack, cloudformation:UpdateStack).</li>
+<li>Restrict resource types or templates.</li>
+<li><strong>Example</strong>: {"Effect": "Allow", "Action": "cloudformation:CreateStack", "Resource": "*"}.</li>
+</ul>
+</li>
+<li><strong>Service Roles</strong>:<ul>
+<li>CloudFormation assumes IAM role to create resources.</li>
+<li><strong>Explanation</strong>: E.g., role with EC2, S3 permissions for stack.</li>
+</ul>
+</li>
+<li><strong>Stack Policies</strong>:<ul>
+<li>JSON policy to protect stack resources from updates/deletion.</li>
+<li><strong>Explanation</strong>: E.g., prevent deletion of RDS instance.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Practice IAM and stack policies for access control.</li>
+</ul>
+<h3 id="encryption"><strong>Encryption</strong></h3>
+<ul>
+<li><strong>In Transit</strong>:<ul>
+<li>HTTPS for CloudFormation API calls and console.</li>
+<li><strong>Explanation</strong>: E.g., secure CreateStack call.</li>
+</ul>
+</li>
+<li><strong>At Rest</strong>:<ul>
+<li>Integrates with KMS-encrypted resources (e.g., S3 buckets, RDS).</li>
+<li>Templates stored securely in S3 (encrypted with KMS if specified).</li>
+<li><strong>Explanation</strong>: E.g., deploy KMS-encrypted S3 bucket.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Highlight KMS integration for compliance.</li>
+</ul>
+<h3 id="compliance"><strong>Compliance</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Meet regulatory standards.</li>
+<li><strong>Features</strong>:<ul>
+<li>Security Hub detects non-compliant stacks (new 2025).</li>
+<li>Supports HIPAA, PCI, SOC, ISO, GDPR, FIPS 140-2 (GovCloud).</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., deploy PCI-compliant VPC with CloudFormation.</li>
+<li><strong>Exam Tip</strong>: Use Security Hub for compliance checks.</li>
+</ul>
+<h3 id="auditing"><strong>Auditing</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Track stack changes.</li>
+<li><strong>Features</strong>:<ul>
+<li>CloudTrail logs all stack operations.</li>
+<li>Drift detection ensures template compliance.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., audit unauthorized UpdateStack attempts.</li>
+<li><strong>Exam Tip</strong>: Use CloudTrail for auditing.</li>
+</ul>
+<h3 id="key-notes_3"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Security</strong>: IAM + stack policies + KMS + auditing = secure IaC.</li>
+<li><strong>Exam Tip</strong>: Configure service roles, stack policies, and drift detection.</li>
+</ul>
+<hr />
+<h3 id="5-cloudformation-cost-optimization"><strong>5. CloudFormation Cost Optimization</strong></h3>
+<p>Cost efficiency is a key exam domain.</p>
+<h3 id="pricing"><strong>Pricing</strong></h3>
+<ul>
+<li><strong>CloudFormation</strong>: Free (charges apply for resources created).</li>
+<li><strong>Resources</strong>: Cost based on resource type (e.g., EC2, S3, RDS).</li>
+<li><strong>Example</strong>:<ul>
+<li>Stack with 1 EC2 (t3.micro, $0.01/hour), 1 S3 bucket ($0.023/GB), 1 RDS (db.t3.micro, $0.017/hour):<ul>
+<li>CloudFormation: $0.</li>
+<li>Resources: (720 × $0.01) + (1 GB × $0.023) + (720 × $0.017) = $7.20 + $0.023 + $12.24 = ~$19.46/month.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Free Tier</strong>: None for CloudFormation; resource free tier applies.</li>
+</ul>
+<h3 id="cost-strategies"><strong>Cost Strategies</strong></h3>
+<ul>
+<li><strong>Optimize Resources</strong>:<ul>
+<li>Use cost-effective resources in templates (e.g., t3.micro vs. m5.large).</li>
+<li><strong>Explanation</strong>: E.g., save $0.09/hour by using t3.micro.</li>
+</ul>
+</li>
+<li><strong>Delete Unused Stacks</strong>:<ul>
+<li>Remove stacks to terminate resources and stop costs.</li>
+<li><strong>Explanation</strong>: E.g., delete dev stack to save $19.46/month.</li>
+</ul>
+</li>
+<li><strong>Use Parameters for Flexibility</strong>:<ul>
+<li>Allow environment-specific sizing (e.g., smaller EC2 for dev).</li>
+<li><strong>Explanation</strong>: E.g., parameter for InstanceType saves $50/month in dev.</li>
+</ul>
+</li>
+<li><strong>Tagging</strong>:<ul>
+<li>Apply tags to stacks and resources for cost tracking.</li>
+<li><strong>Explanation</strong>: E.g., tag stack with “Project:App”.</li>
+</ul>
+</li>
+<li><strong>Drift Detection</strong>:<ul>
+<li>Prevent costly manual changes (e.g., upsizing EC2 instance).</li>
+<li><strong>Explanation</strong>: E.g., detect oversized instance to save $100/month.</li>
+</ul>
+</li>
+<li><strong>Nested Stacks</strong>:<ul>
+<li>Modularize templates to reuse and optimize resources.</li>
+<li><strong>Explanation</strong>: E.g., reuse VPC template to avoid duplication.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-notes_4"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Cost Savings</strong>: Optimize resources + delete stacks + tagging = lower costs.</li>
+<li><strong>Exam Tip</strong>: Calculate resource costs for stacks.</li>
+</ul>
+<hr />
+<h3 id="6-cloudformation-advanced-features"><strong>6. CloudFormation Advanced Features</strong></h3>
+<h3 id="enhanced-stacksets"><strong>Enhanced StackSets</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Multi-account/Region deployments.</li>
+<li><strong>Features</strong>:<ul>
+<li>Simplified setup with AWS Organizations (new 2024).</li>
+<li>Supports parallel deployments, failure handling.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., deploy S3 bucket to 10 accounts in 5 Regions.</li>
+<li><strong>Exam Tip</strong>: Know StackSets for enterprise IaC.</li>
+</ul>
+<h3 id="improved-drift-detection"><strong>Improved Drift Detection</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Faster configuration checks.</li>
+<li><strong>Features</strong>:<ul>
+<li>Enhanced performance for large stacks (new 2024).</li>
+<li>Detailed drift reports per resource.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., detect modified IAM role in seconds.</li>
+<li><strong>Exam Tip</strong>: Use drift detection for compliance.</li>
+</ul>
+<h3 id="security-hub-integration"><strong>Security Hub Integration</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Compliance monitoring.</li>
+<li><strong>Features</strong>:<ul>
+<li>Detects non-compliant stack configurations (e.g., public S3 bucket) (new 2025).</li>
+<li>Aggregates findings with GuardDuty, Inspector.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: E.g., flag stack with open security group.</li>
+<li><strong>Exam Tip</strong>: Use Security Hub for stack compliance.</li>
+</ul>
+<h3 id="nested-stacks"><strong>Nested Stacks</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Modularize templates.</li>
+<li><strong>Features</strong>:<ul>
+<li>Break complex stacks into reusable templates.</li>
+<li><strong>Explanation</strong>: E.g., separate VPC and EC2 templates.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Use nested stacks for large apps.</li>
+</ul>
+<h3 id="change-sets"><strong>Change Sets</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Preview stack updates.</li>
+<li><strong>Features</strong>:<ul>
+<li>Show added, modified, or deleted resources.</li>
+<li><strong>Explanation</strong>: E.g., review impact of adding RDS instance.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Use change sets for safe updates.</li>
+</ul>
+<h3 id="custom-resources"><strong>Custom Resources</strong>:</h3>
+<ul>
+<li><strong>Purpose</strong>: Extend CloudFormation.</li>
+<li><strong>Features</strong>:<ul>
+<li>Use Lambda or SNS to manage non-AWS resources.</li>
+<li><strong>Explanation</strong>: E.g., Lambda creates DNS record outside AWS.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Know custom resources for flexibility.</li>
+</ul>
+<h3 id="key-notes_5"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Flexibility</strong>: StackSets + drift detection + nested stacks = advanced IaC.</li>
+<li><strong>Exam Tip</strong>: Master StackSets, nested stacks, and custom resources.</li>
+</ul>
+<hr />
+<h3 id="7-cloudformation-use-cases"><strong>7. CloudFormation Use Cases</strong></h3>
+<p>Understand practical applications.</p>
+<h3 id="multi-tier-application"><strong>Multi-Tier Application</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Template for VPC, EC2, RDS, ALB.</li>
+<li><strong>Features</strong>: Consistent, repeatable deployment.</li>
+<li><strong>Explanation</strong>: E.g., deploy web app with auto-scaling.</li>
+</ul>
+<h3 id="multi-accountregion-deployment"><strong>Multi-Account/Region Deployment</strong></h3>
+<ul>
+<li><strong>Setup</strong>: StackSet for VPC, IAM roles across accounts.</li>
+<li><strong>Features</strong>: Centralized management via Organizations.</li>
+<li><strong>Explanation</strong>: E.g., deploy S3 buckets to 10 accounts.</li>
+</ul>
+<h3 id="devprod-environments"><strong>Dev/Prod Environments</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Template with parameters for dev/prod.</li>
+<li><strong>Features</strong>: Environment-specific configurations.</li>
+<li><strong>Explanation</strong>: E.g., smaller EC2 for dev, larger for prod.</li>
+</ul>
+<h3 id="compliance-management"><strong>Compliance Management</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Template with KMS, IAM, and drift detection.</li>
+<li><strong>Features</strong>: HIPAA/PCI-compliant infrastructure.</li>
+<li><strong>Explanation</strong>: E.g., deploy compliant VPC with Security Hub.</li>
+</ul>
+<hr />
+<h3 id="8-cloudformation-vs-other-iac-tools"><strong>8. CloudFormation vs. Other IaC Tools</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>CloudFormation</strong></th>
+<th><strong>Terraform</strong></th>
+<th><strong>AWS CDK</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>AWS Native IaC</td>
+<td>Multi-Cloud IaC</td>
+<td>Programmatic IaC</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td>JSON/YAML</td>
+<td>HCL</td>
+<td>Code (Python, JS, etc.)</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>AWS only</td>
+<td>AWS, other clouds</td>
+<td>AWS only</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>Free (resource costs)</td>
+<td>Free (resource costs)</td>
+<td>Free (resource costs)</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>AWS-centric deployments</td>
+<td>Multi-cloud setups</td>
+<td>Developer-friendly IaC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="explanation"><strong>Explanation</strong>:</h3>
+<ul>
+<li><strong>CloudFormation</strong>: AWS-native, best for AWS integrations.</li>
+<li><strong>Terraform</strong>: Multi-cloud, more flexible but complex.</li>
+<li><strong>CDK</strong>: Programmatic, converts code to CloudFormation.</li>
+</ul>
+<hr />
+<h3 id="9-detailed-explanations-for-mastery"><strong>9. Detailed Explanations for Mastery</strong></h3>
+<ul>
+<li><strong>Enhanced StackSets</strong>:<ul>
+<li><strong>Example</strong>: Deploy VPC to 10 accounts in 3 Regions.</li>
+<li><strong>Why It Matters</strong>: Simplifies enterprise IaC—new for 2024.</li>
+</ul>
+</li>
+<li><strong>Improved Drift Detection</strong>:<ul>
+<li><strong>Example</strong>: Detect manual EC2 instance type change.</li>
+<li><strong>Why It Matters</strong>: Faster compliance checks—new for 2024.</li>
+</ul>
+</li>
+<li><strong>Security Hub Integration</strong>:<ul>
+<li><strong>Example</strong>: Flag stack with public S3 bucket.</li>
+<li><strong>Why It Matters</strong>: Centralized compliance—new for 2025.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="10-quick-reference-table"><strong>10. Quick Reference Table</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Key Detail</strong></th>
+<th><strong>Exam Relevance</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Template</td>
+<td>Define resources</td>
+<td>JSON/YAML, Parameters, Resources</td>
+<td>Core Concept</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Manage resources</td>
+<td>Create, update, delete as unit</td>
+<td>Core Concept</td>
+</tr>
+<tr>
+<td>StackSet</td>
+<td>Multi-account/Region</td>
+<td>Enhanced with Organizations (2024)</td>
+<td>Core Concept</td>
+</tr>
+<tr>
+<td>Drift Detection</td>
+<td>Configuration consistency</td>
+<td>Improved performance (2024)</td>
+<td>Resilience, Security</td>
+</tr>
+<tr>
+<td>Change Set</td>
+<td>Preview updates</td>
+<td>Shows resource changes</td>
+<td>Flexibility</td>
+</tr>
+<tr>
+<td>Intrinsic Functions</td>
+<td>Dynamic logic</td>
+<td>Ref, Fn::GetAtt, Fn::Sub</td>
+<td>Flexibility</td>
+</tr>
+<tr>
+<td>Security Hub</td>
+<td>Compliance monitoring</td>
+<td>Non-compliant stacks (2025)</td>
+<td>Security, Resilience</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made By TechiKrish
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

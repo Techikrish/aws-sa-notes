@@ -1,0 +1,3955 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Amazon%20Athena/">
+      
+      
+        <link rel="next" href="../Amazon%20DocumentDB/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Amazon Aurora - AWS Solution Architect Associate Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#amazon-aurora" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AWS Solution Architect Associate Notes" class="md-header__button md-logo" aria-label="AWS Solution Architect Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solution Architect Associate Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Amazon Aurora
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TechiKrish/aws-saa-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ⭐ Give me Star
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AWS Solution Architect Associate Notes" class="md-nav__button md-logo" aria-label="AWS Solution Architect Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Solution Architect Associate Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TechiKrish/aws-saa-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ⭐ Give me Star
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Analytics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Analytics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20Athena/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Athena
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20EMR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EMR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20Kinesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Kinesis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/AWS%20Glue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Glue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Application Integration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Application Integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20EventBridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EventBridge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20MQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon MQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20Simple%20Notification%20Service%20%28Amazon%20SNS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Simple Notification Service (Amazon SNS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20Simple%20Queue%20Service%20%28Amazon%20SQS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Simple Queue Service (Amazon SQS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/AWS%20Step%20Functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Step Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS Cost Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            AWS Cost Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AWS%20Cost%20Management/AWS%20Cost%20Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Cost Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Compute
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Compute
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Batch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Outposts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Outposts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Serverless%20Application%20Repository/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Serverless Application Repository
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Wavelength/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Wavelength
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/EC2%20Auto%20Scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2 Auto Scaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/EC2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/Elastic%20Beanstalk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Elastic Beanstalk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/VMware%20Cloud%20on%20AWS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VMware Cloud on AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Containers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Containers/Containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20Athena/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Athena
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Amazon Aurora
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Aurora
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-aurora-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon Aurora Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-aurora-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Aurora Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-aurora-performance-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Aurora Performance Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Throughput
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Scaling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Serverless
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-global-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Global Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aurora-resilience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Aurora Resilience Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-az-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-AZ Storage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      Failover
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backups
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backtrack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backtrack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-global-database_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Global Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-aurora-security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Aurora Security Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster Policies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-aurora-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Aurora Cost Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Standard
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-serverless_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Serverless
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Replicas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-aurora-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Aurora Advanced Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-serverless-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Serverless v2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-parallel-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Parallel Query
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-aurora-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Aurora Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-performance-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Performance Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable Workloads
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics-on-transactional-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics on Transactional Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-aurora-vs-rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Aurora vs. RDS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-explanations-for-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Explanations for Mastery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference Table
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20DocumentDB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon DocumentDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20ElastiCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ElastiCache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20Keyspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Keyspaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20Neptune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Neptune
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20RDS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon RDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20Redshift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Redshift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamo%20db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DynamoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security, Identity, and Compliance
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Security, Identity, and Compliance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Cognito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Cognito
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20GuardDuty/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Inspector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Inspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Macie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Macie
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Certificate%20Manager%20%28ACM%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Certificate Manager (ACM)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Identity%20and%20Access%20Management%20%28IAM%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Identity and Access Management (IAM)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Key%20Management%20Service%20%28AWS%20KMS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Key Management Service (AWS KMS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Secrets%20Manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Secrets Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Shield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Shield
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Web%20Application%20Firewall%20%28AWS%20WAF%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Web Application Firewall (AWS WAF)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Serverless
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Serverless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20AppSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS AppSync
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20Fargate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Fargate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20Lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Lambda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Storage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20EBS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EBS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20EFS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EFS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20FSx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon FSx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20Backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20S3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS S3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20Storage%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Storage Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Front-End Web and Mobile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Front-End Web and Mobile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/Amazon%20API%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon API Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/AWS%20Amplify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Amplify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Machine Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machine%20Learning/Machine%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Management and Governance
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Management and Governance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/Amazon%20CloudWatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20CloudFormation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFormation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20CloudTrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Control%20Tower/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Control Tower
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Organizations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Organizations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Systems%20Manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Systems Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Trusted%20Advisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Trusted Advisor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Media Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Media Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Media%20Services/Media%20Services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Media Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Migration and Transfer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Migration and Transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migration%20and%20Transfer/Migration%20and%20Transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration and Transfer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Networking and Content Delivery
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Networking and Content Delivery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/Amazon%20Route%2053/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Route 53
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/Amazon%20VPC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon VPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Client%20VPN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Client VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Cloudfront/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFront
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Direct%20Connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Direct Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Elastic%20Load%20Balancing%20%28ELB%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Elastic Load Balancing (ELB)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Global%20Accelerator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Global Accelerator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20PrivateLink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS PrivateLink
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Site-to-Site%20VPN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Site-to-Site VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Networking%20and%20Content%20Delivery/AWS%20Transit%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Transit Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-aurora-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon Aurora Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-aurora-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Aurora Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-aurora-performance-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Aurora Performance Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Throughput
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Scaling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Serverless
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-global-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Global Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aurora-resilience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Aurora Resilience Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-az-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-AZ Storage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      Failover
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backups
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backtrack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backtrack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-global-database_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Global Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-aurora-security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Aurora Security Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster Policies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-aurora-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Aurora Cost Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Standard
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-serverless_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Serverless
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Replicas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-aurora-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Aurora Advanced Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-serverless-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Serverless v2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-parallel-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Parallel Query
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aurora-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aurora Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-aurora-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Aurora Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-performance-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Performance Apps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable Workloads
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics-on-transactional-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics on Transactional Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-aurora-vs-rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Aurora vs. RDS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-explanations-for-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Explanations for Mastery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference Table
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="amazon-aurora">Amazon Aurora</h1>
+<h3 id="amazon-aurora-overview"><strong>Amazon Aurora Overview</strong></h3>
+<ul>
+<li><strong>Definition</strong>: Amazon Aurora is a MySQL- and PostgreSQL-compatible relational database built for the cloud, offering high performance, scalability, and availability.</li>
+<li><strong>Key Features</strong>:<ul>
+<li>Up to 15x faster than standard MySQL/PostgreSQL.</li>
+<li>Managed service with automated backups, patching, and scaling.</li>
+<li>Shared storage architecture for durability and speed.</li>
+</ul>
+</li>
+<li><strong>Use Cases</strong>: High-performance applications (e.g., SaaS platforms, e-commerce, analytics).</li>
+</ul>
+<hr />
+<h3 id="1-aurora-core-concepts"><strong>1. Aurora Core Concepts</strong></h3>
+<h3 id="architecture"><strong>Architecture</strong></h3>
+<ul>
+<li><strong>Cluster</strong>: Consists of one primary instance and up to 15 read replicas, sharing a single storage volume.<ul>
+<li><strong>Explanation</strong>: Unlike traditional RDS, compute (instances) is decoupled from storage, reducing I/O bottlenecks.</li>
+</ul>
+</li>
+<li><strong>Storage</strong>:<ul>
+<li>Auto-scales from 10 GB to 128 TB.</li>
+<li>Replicates 6 copies across 3 Availability Zones (AZs).</li>
+<li><strong>Explanation</strong>: No manual provisioning—grows with data; 11 9s durability.</li>
+</ul>
+</li>
+<li><strong>Engines</strong>: MySQL-compatible or PostgreSQL-compatible.<ul>
+<li><strong>Explanation</strong>: Drop-in replacement for existing apps, with Aurora-specific optimizations.</li>
+</ul>
+</li>
+</ul>
+<h3 id="editions"><strong>Editions</strong></h3>
+<ul>
+<li><strong>Aurora Standard (Provisioned)</strong>:<ul>
+<li>Fixed instance sizes (e.g., db.r5.large).</li>
+<li><strong>Explanation</strong>: For predictable workloads needing consistent performance.</li>
+</ul>
+</li>
+<li><strong>Aurora Serverless</strong>:<ul>
+<li>Auto-scales compute (Aurora Capacity Units, ACUs).</li>
+<li>Pauses when idle.</li>
+<li><strong>Explanation</strong>: For unpredictable or intermittent workloads (e.g., dev/test).</li>
+</ul>
+</li>
+<li><strong>Aurora Multi-Master</strong>:<ul>
+<li>Multiple read-write instances for high availability.</li>
+<li><strong>Explanation</strong>: Rare for SAA-C03—know it exists, focus on Standard/Serverless.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-notes"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Exam Relevance</strong>: Understand cluster architecture and edition differences.</li>
+<li><strong>Mastery Tip</strong>: Compare Aurora’s storage model vs. RDS (EBS-based).</li>
+</ul>
+<hr />
+<h3 id="2-aurora-performance-features"><strong>2. Aurora Performance Features</strong></h3>
+<p>Aurora excels in high-performing architectures.</p>
+<h3 id="high-throughput"><strong>High Throughput</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Faster queries than standard MySQL/PostgreSQL.</li>
+<li><strong>How It Works</strong>:<ul>
+<li>Log-structured storage minimizes write amplification.</li>
+<li>Caching at storage layer reduces I/O.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: Up to 15x faster for writes, 5x for reads—e.g., handles millions of QPS for e-commerce.</li>
+</ul>
+<h3 id="read-scaling"><strong>Read Scaling</strong></h3>
+<ul>
+<li><strong>Read Replicas</strong>:<ul>
+<li>Up to 15 per cluster (vs. 5 for RDS).</li>
+<li>Auto-scaling replicas based on load.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: Offloads read traffic (e.g., analytics queries) with &lt; 20ms lag.</li>
+</ul>
+<h3 id="aurora-serverless"><strong>Aurora Serverless</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Scales compute instantly.</li>
+<li><strong>Features</strong>:<ul>
+<li>Min/max ACUs (e.g., 2-256 ACUs).</li>
+<li>Scales in seconds, pauses after inactivity.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: Eliminates over-provisioning—ideal for spiky traffic.</li>
+</ul>
+<h3 id="aurora-global-database"><strong>Aurora Global Database</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Low-latency reads across regions.</li>
+<li><strong>How It Works</strong>: Primary Region (read/write), secondary Regions (read-only, &lt; 1s replication).</li>
+<li><strong>Explanation</strong>: Cross-region replication—e.g., U.S. users write, EU users read.</li>
+</ul>
+<h3 id="key-notes_1"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Performance</strong>: Shared storage + replicas = high throughput.</li>
+<li><strong>Exam Tip</strong>: Know when to use Serverless vs. Global Database.</li>
+</ul>
+<hr />
+<h3 id="3-aurora-resilience-features"><strong>3. Aurora Resilience Features</strong></h3>
+<p>Resilience ensures high availability and durability.</p>
+<h3 id="multi-az-storage"><strong>Multi-AZ Storage</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Survive AZ failures.</li>
+<li><strong>How It Works</strong>: 6 copies across 3 AZs, tolerates 2 copy losses without write impact.</li>
+<li><strong>Explanation</strong>: Built-in—no Multi-AZ config needed (unlike RDS).</li>
+</ul>
+<h3 id="failover"><strong>Failover</strong></h3>
+<ul>
+<li><strong>Primary Instance</strong>:<ul>
+<li>Fails over to a read replica in ~30 seconds (vs. RDS ~1-2 minutes).</li>
+<li><strong>Explanation</strong>: Fast due to shared storage—no data copy needed.</li>
+</ul>
+</li>
+<li><strong>Multi-Master</strong>:<ul>
+<li>All instances read/write, failover in seconds.</li>
+<li><strong>Explanation</strong>: Niche—focus on single primary for exam.</li>
+</ul>
+</li>
+</ul>
+<h3 id="backups"><strong>Backups</strong></h3>
+<ul>
+<li><strong>Automated</strong>: Continuous, restore to any point in last 35 days.</li>
+<li><strong>Manual Snapshots</strong>: User-triggered, stored in S3.</li>
+<li><strong>Explanation</strong>: PITR uses logs, not snapshots—granular recovery.</li>
+</ul>
+<h3 id="backtrack"><strong>Backtrack</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Rewind database to a point in time (no new table).</li>
+<li><strong>Features</strong>: Seconds granularity, max 72 hours.</li>
+<li><strong>Explanation</strong>: Faster than PITR for quick fixes—e.g., undo bad update.</li>
+</ul>
+<h3 id="aurora-global-database_1"><strong>Aurora Global Database</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Regional DR.</li>
+<li><strong>Explanation</strong>: Secondary Regions promoted to primary if needed.</li>
+</ul>
+<h3 id="key-notes_2"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Resilience</strong>: 6-copy storage + fast failover = enterprise-grade HA.</li>
+<li><strong>Exam Tip</strong>: Compare failover times (Aurora &lt; 30s vs. RDS ~2min).</li>
+</ul>
+<hr />
+<h3 id="4-aurora-security-features"><strong>4. Aurora Security Features</strong></h3>
+<p>Security aligns with SAA-C03’s secure architecture focus.</p>
+<h3 id="encryption"><strong>Encryption</strong></h3>
+<ul>
+<li><strong>At Rest</strong>: AWS KMS (default or custom key).</li>
+<li><strong>In Transit</strong>: SSL/TLS for client connections.</li>
+<li><strong>Explanation</strong>: Meets compliance (e.g., HIPAA)—same as RDS.</li>
+</ul>
+<h3 id="access-control"><strong>Access Control</strong></h3>
+<ul>
+<li><strong>IAM Authentication</strong>: Password-less login for MySQL/PostgreSQL.<ul>
+<li><strong>Explanation</strong>: Integrates with IAM roles—secure for apps.</li>
+</ul>
+</li>
+<li><strong>VPC</strong>: Deploy in private subnets, control via security groups.<ul>
+<li><strong>Explanation</strong>: Isolates database—e.g., app in public subnet, Aurora in private.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cluster-policies"><strong>Cluster Policies</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Fine-grained control (e.g., restrict Backtrack).</li>
+<li><strong>Explanation</strong>: Enhances governance—less common in exam but good to know.</li>
+</ul>
+<h3 id="key-notes_3"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Security</strong>: KMS + IAM + VPC = robust protection.</li>
+<li><strong>Exam Tip</strong>: Practice IAM policy for Aurora access.</li>
+</ul>
+<hr />
+<h3 id="5-aurora-cost-optimization"><strong>5. Aurora Cost Optimization</strong></h3>
+<p>Cost efficiency is a key exam domain.</p>
+<h3 id="aurora-standard"><strong>Aurora Standard</strong></h3>
+<ul>
+<li><strong>Pricing</strong>: Pay for instance hours (e.g., db.r5.large ~~$0.29/hour) + storage (~~$0.10/GB-month).</li>
+<li><strong>Cost Tips</strong>:<ul>
+<li>Use smaller instances for dev/test (e.g., db.t3.medium).</li>
+<li>Reserved Instances for steady-state apps (1- or 3-year).</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: Storage auto-scales—only pay for used GB.</li>
+</ul>
+<h3 id="aurora-serverless_1"><strong>Aurora Serverless</strong></h3>
+<ul>
+<li><strong>Pricing</strong>: Pay per ACU-second (~$0.06/ACU-hour), storage separate.</li>
+<li><strong>Cost Tips</strong>:<ul>
+<li>Pause enabled—saves compute costs during idle.</li>
+<li>Set min ACUs low for light workloads.</li>
+</ul>
+</li>
+<li><strong>Explanation</strong>: Ideal for sporadic use—avoids idle instance costs.</li>
+</ul>
+<h3 id="read-replicas"><strong>Read Replicas</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Offload reads without over-sizing primary.</li>
+<li><strong>Explanation</strong>: Cheaper than scaling primary—e.g., add replica for reporting.</li>
+</ul>
+<h3 id="key-notes_4"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Cost Savings</strong>: Serverless for bursts, replicas for reads.</li>
+<li><strong>Exam Tip</strong>: Calculate cost for Serverless vs. Standard.</li>
+</ul>
+<hr />
+<h3 id="6-aurora-advanced-features"><strong>6. Aurora Advanced Features</strong></h3>
+<p>These enhance functionality and performance.</p>
+<h3 id="aurora-serverless-v2"><strong>Aurora Serverless v2</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Improved scaling over v1.</li>
+<li><strong>Features</strong>: Scales in 0.5 ACU increments, supports replicas.</li>
+<li><strong>Explanation</strong>: More flexible—handles production workloads better.</li>
+</ul>
+<h3 id="aurora-parallel-query"><strong>Aurora Parallel Query</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Speed up analytical queries.</li>
+<li><strong>How It Works</strong>: Distributes queries across storage nodes.</li>
+<li><strong>Explanation</strong>: Reduces load on compute—e.g., big reports on transactional DB.</li>
+</ul>
+<h3 id="aurora-machine-learning"><strong>Aurora Machine Learning</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Integrate ML models (e.g., SageMaker).</li>
+<li><strong>Explanation</strong>: Niche—know it exists for advanced apps.</li>
+</ul>
+<h3 id="clone-database"><strong>Clone Database</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Create instant copy for testing.</li>
+<li><strong>How It Works</strong>: Uses copy-on-write—no full duplication.</li>
+<li><strong>Explanation</strong>: Fast, cost-efficient—e.g., dev copy of prod.</li>
+</ul>
+<h3 id="key-notes_5"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Performance</strong>: Parallel Query for analytics, Clone for agility.</li>
+<li><strong>Exam Tip</strong>: Focus on Parallel Query use case.</li>
+</ul>
+<hr />
+<h3 id="7-aurora-use-cases"><strong>7. Aurora Use Cases</strong></h3>
+<p>Understand practical applications.</p>
+<h3 id="high-performance-apps"><strong>High-Performance Apps</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Aurora Standard + replicas.</li>
+<li><strong>Features</strong>: High throughput, low latency.</li>
+<li><strong>Explanation</strong>: SaaS, e-commerce—handles heavy traffic.</li>
+</ul>
+<h3 id="variable-workloads"><strong>Variable Workloads</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Aurora Serverless.</li>
+<li><strong>Features</strong>: Auto-scaling, cost-efficient.</li>
+<li><strong>Explanation</strong>: Dev/test, seasonal apps—scales with demand.</li>
+</ul>
+<h3 id="global-applications"><strong>Global Applications</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Global Database.</li>
+<li><strong>Features</strong>: Cross-region reads, DR.</li>
+<li><strong>Explanation</strong>: Multinational apps—low-latency worldwide.</li>
+</ul>
+<h3 id="analytics-on-transactional-data"><strong>Analytics on Transactional Data</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Parallel Query + replicas.</li>
+<li><strong>Features</strong>: Fast queries without impacting writes.</li>
+<li><strong>Explanation</strong>: Dashboards on live data.</li>
+</ul>
+<hr />
+<h3 id="8-aurora-vs-rds"><strong>8. Aurora vs. RDS</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Aurora</strong></th>
+<th><strong>RDS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Up to 15x faster</td>
+<td>Standard MySQL/PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>Auto-scales to 128 TB</td>
+<td>EBS-based, max 64 TB</td>
+</tr>
+<tr>
+<td><strong>Replication</strong></td>
+<td>6 copies, 15 replicas</td>
+<td>2 copies (Multi-AZ), 5 replicas</td>
+</tr>
+<tr>
+<td><strong>Failover</strong></td>
+<td>&lt; 30 seconds</td>
+<td>~1-2 minutes</td>
+</tr>
+<tr>
+<td><strong>Serverless</strong></td>
+<td>Yes (v1, v2)</td>
+<td>Limited (MySQL/PostgreSQL)</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>Higher (premium features)</td>
+<td>Lower (standard)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="explanation"><strong>Explanation</strong>:</h3>
+<ul>
+<li><strong>Aurora</strong>: Performance + HA for demanding apps.</li>
+<li><strong>RDS</strong>: Simpler, cheaper for traditional needs.</li>
+</ul>
+<hr />
+<h3 id="detailed-explanations-for-mastery"><strong>Detailed Explanations for Mastery</strong></h3>
+<ul>
+<li><strong>Failover</strong>:<ul>
+<li><strong>Example</strong>: Primary fails, replica promoted in ~20 seconds.</li>
+<li><strong>Why It Matters</strong>: Shared storage = no data copy—faster than RDS.</li>
+</ul>
+</li>
+<li><strong>Global Database</strong>:<ul>
+<li><strong>Example</strong>: Write in us-east-1, read in eu-west-1 (&lt; 1s lag).</li>
+<li><strong>Why It Matters</strong>: Low-latency global reads—key for DR scenarios.</li>
+</ul>
+</li>
+<li><strong>Backtrack</strong>:<ul>
+<li><strong>Example</strong>: Rewind to fix bad UPDATE at 10:00 AM.</li>
+<li><strong>Why It Matters</strong>: Faster than PITR—exam loves recovery questions.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="quick-reference-table"><strong>Quick Reference Table</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Key Detail</strong></th>
+<th><strong>Exam Relevance</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster Architecture</td>
+<td>Scalability</td>
+<td>Shared storage, 15 replicas</td>
+<td>Core Concept</td>
+</tr>
+<tr>
+<td>Serverless</td>
+<td>Auto-scaling</td>
+<td>ACUs, pauses when idle</td>
+<td>Cost, Performance</td>
+</tr>
+<tr>
+<td>Global Database</td>
+<td>Cross-region</td>
+<td>&lt; 1s replication</td>
+<td>Resilience, Performance</td>
+</tr>
+<tr>
+<td>Failover</td>
+<td>High availability</td>
+<td>&lt; 30 seconds</td>
+<td>Resilience</td>
+</tr>
+<tr>
+<td>Backtrack</td>
+<td>Quick recovery</td>
+<td>Rewind, max 72 hours</td>
+<td>Resilience</td>
+</tr>
+<tr>
+<td>Parallel Query</td>
+<td>Analytics</td>
+<td>Distributes across storage</td>
+<td>Performance</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td>Security</td>
+<td>KMS, SSL/TLS</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>Read Replicas</td>
+<td>Read scaling</td>
+<td>Auto-scaling, low lag</td>
+<td>Performance</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made By TechiKrish
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4176 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Amazon%20VPC/">
+      
+      
+        <link rel="next" href="../AWS%20Cloudfront/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>AWS Client VPN - AWS Solution Architect Associate Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-client-vpn" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AWS Solution Architect Associate Notes" class="md-header__button md-logo" aria-label="AWS Solution Architect Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solution Architect Associate Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS Client VPN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TechiKrish/aws-saa-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ⭐ Give me Star
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AWS Solution Architect Associate Notes" class="md-nav__button md-logo" aria-label="AWS Solution Architect Associate Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AWS Solution Architect Associate Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TechiKrish/aws-saa-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ⭐ Give me Star
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Analytics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Analytics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20Athena/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Athena
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20EMR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EMR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Amazon%20Kinesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Kinesis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/AWS%20Glue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Glue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analytics/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Application Integration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Application Integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20EventBridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EventBridge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20MQ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon MQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20Simple%20Notification%20Service%20%28Amazon%20SNS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Simple Notification Service (Amazon SNS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Amazon%20Simple%20Queue%20Service%20%28Amazon%20SQS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Simple Queue Service (Amazon SQS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/AWS%20Step%20Functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Step Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Application%20Integration/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS Cost Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            AWS Cost Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AWS%20Cost%20Management/AWS%20Cost%20Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Cost Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Compute
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Compute
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Batch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Outposts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Outposts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Serverless%20Application%20Repository/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Serverless Application Repository
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/AWS%20Wavelength/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Wavelength
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/EC2%20Auto%20Scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2 Auto Scaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/EC2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EC2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/Elastic%20Beanstalk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Elastic Beanstalk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compute/VMware%20Cloud%20on%20AWS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VMware Cloud on AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Containers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Containers/Containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Athena/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Athena
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Aurora
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20DocumentDB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon DocumentDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20ElastiCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ElastiCache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Keyspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Keyspaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Neptune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Neptune
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20RDS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon RDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/Amazon%20Redshift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Redshift
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/dynamo%20db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DynamoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security, Identity, and Compliance
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Security, Identity, and Compliance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Cognito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Cognito
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20GuardDuty/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon GuardDuty
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Inspector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Inspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Amazon%20Macie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Macie
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Certificate%20Manager%20%28ACM%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Certificate Manager (ACM)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Identity%20and%20Access%20Management%20%28IAM%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Identity and Access Management (IAM)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Key%20Management%20Service%20%28AWS%20KMS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Key Management Service (AWS KMS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Secrets%20Manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Secrets Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Shield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Shield
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/AWS%20Web%20Application%20Firewall%20%28AWS%20WAF%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Web Application Firewall (AWS WAF)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security%2C%20Identity%2C%20and%20Compliance/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Serverless
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Serverless
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20AppSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS AppSync
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20Fargate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Fargate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serverless/AWS%20Lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Lambda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Storage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Storage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20EBS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EBS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20EFS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EFS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/Amazon%20FSx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon FSx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20Backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20S3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS S3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage/AWS%20Storage%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Storage Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Front-End Web and Mobile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Front-End Web and Mobile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/Amazon%20API%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon API Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/AWS%20Amplify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Amplify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Front-End%20Web%20and%20Mobile/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Machine Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machine%20Learning/Machine%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Management and Governance
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Management and Governance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/Amazon%20CloudWatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon CloudWatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20CloudFormation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFormation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20CloudTrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudTrail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Control%20Tower/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Control Tower
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Organizations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Organizations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Systems%20Manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Systems Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/AWS%20Trusted%20Advisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Trusted Advisor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Management%20and%20Governance/Others/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Media Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Media Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Media%20Services/Media%20Services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Media Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Migration and Transfer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Migration and Transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Migration%20and%20Transfer/Migration%20and%20Transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration and Transfer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Networking and Content Delivery
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            Networking and Content Delivery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20Route%2053/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Route 53
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Amazon%20VPC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon VPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AWS Client VPN
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Client VPN
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-client-vpn-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Client VPN Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-aws-client-vpn-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. AWS Client VPN Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-client-vpn-performance-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Client VPN Performance Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elastic Scalability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrent-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concurrent Connections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Latency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-client-vpn-resilience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Client VPN Resilience Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Availability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-redundancy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Redundancy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-client-vpn-security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Client VPN Security Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPC Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-client-vpn-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Client VPN Cost Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pricing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pricing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-client-vpn-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Client VPN Advanced Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#split-tunnel-vs-full-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Split-Tunnel vs. Full-Tunnel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-service-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Service Portal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-cloud-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid Cloud Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Resolution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-client-vpn-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Client VPN Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-workforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Workforce
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Migration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iot-device-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      IoT Device Connectivity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-internet-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure Internet Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-client-vpn-vs-other-networking-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Client VPN vs. Other Networking Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-detailed-explanations-for-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Detailed Explanations for Mastery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-quick-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Quick Reference Table
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Cloudfront/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CloudFront
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Direct%20Connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Direct Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Elastic%20Load%20Balancing%20%28ELB%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Elastic Load Balancing (ELB)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Global%20Accelerator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Global Accelerator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20PrivateLink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS PrivateLink
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Site-to-Site%20VPN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Site-to-Site VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AWS%20Transit%20Gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Transit Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws-client-vpn-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Client VPN Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-aws-client-vpn-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. AWS Client VPN Core Concepts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-client-vpn-performance-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Client VPN Performance Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elastic Scalability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrent-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concurrent Connections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Latency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-client-vpn-resilience-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Client VPN Resilience Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Availability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-redundancy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Redundancy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-client-vpn-security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Client VPN Security Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPC Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-client-vpn-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Client VPN Cost Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pricing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pricing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-client-vpn-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Client VPN Advanced Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#split-tunnel-vs-full-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Split-Tunnel vs. Full-Tunnel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-service-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Service Portal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-cloud-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid Cloud Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Resolution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-notes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-client-vpn-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Client VPN Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-workforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Workforce
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Migration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iot-device-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      IoT Device Connectivity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-internet-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure Internet Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-client-vpn-vs-other-networking-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Client VPN vs. Other Networking Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-detailed-explanations-for-mastery" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Detailed Explanations for Mastery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-quick-reference-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Quick Reference Table
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-client-vpn">AWS Client VPN</h1>
+<h3 id="aws-client-vpn-overview"><strong>AWS Client VPN Overview</strong></h3>
+<ul>
+<li><strong>Definition</strong>: AWS Client VPN is a fully managed, elastic, client-based VPN service that enables secure remote access to AWS resources (e.g., Amazon VPC) and on-premises networks using OpenVPN-based clients over a TLS-encrypted connection.</li>
+<li><strong>Key Features</strong>:<ul>
+<li>Supports OpenVPN clients (AWS-provided or third-party) on Windows, macOS, Linux, iOS, Android.</li>
+<li>Authentication via Active Directory (AD), federated (SAML-2.0), or certificate-based (mutual authentication).</li>
+<li>Scales automatically based on user demand, with high availability across multiple Availability Zones (AZs).</li>
+<li>Integrates with AWS services (VPC, Directory Service, CloudWatch, AWS Certificate Manager [ACM], AWS Backup).</li>
+<li>Supports split-tunnel and full-tunnel modes for flexible routing.</li>
+</ul>
+</li>
+<li><strong>Use Cases</strong>: Remote workforce access to VPC or on-premises resources, secure IoT device connectivity, application access during cloud migration, hybrid cloud networking.</li>
+<li>
+<p><strong>Key Updates (2024–2025)</strong>:</p>
+<ul>
+<li>
+<p>Concurrent connections: AWS-provided client supports up to five simultaneous sessions (January 2025).</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+<li>
+<p>Enhanced logging: Connection logging to CloudWatch for forensics and debugging (March 2024).</p>
+</li>
+<li>FIPS 140-2 compliant endpoints in AWS GovCloud (US-East/West) (October 2024).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="1-aws-client-vpn-core-concepts"><strong>1. AWS Client VPN Core Concepts</strong></h3>
+<h3 id="components"><strong>Components</strong></h3>
+<ul>
+<li><strong>Client VPN Endpoint</strong>:<ul>
+<li>Regional resource that terminates VPN sessions.</li>
+<li>Configured with authentication, client CIDR, server certificate, and logging settings.</li>
+<li><strong>Explanation</strong>: E.g., endpoint in us-east-1 for remote access to VPC.</li>
+</ul>
+</li>
+<li><strong>Target Network</strong>:<ul>
+<li>Subnet in a VPC associated with the endpoint, enabling access to VPC resources.</li>
+<li>Multiple subnets (from same VPC, different AZs) for high availability.</li>
+<li><strong>Explanation</strong>: E.g., associate subnet in us-east-1a for EC2 access.</li>
+</ul>
+</li>
+<li><strong>Client CIDR Range</strong>:<ul>
+<li>IPv4 range (e.g., 10.2.0.0/16) for assigning IP addresses to connected clients.</li>
+<li>Must not overlap with VPC or on-premises CIDR ranges.</li>
+<li><strong>Explanation</strong>: E.g., 10.2.0.0/16 for 65,536 client IPs.</li>
+</ul>
+</li>
+<li><strong>Route Table</strong>:<ul>
+<li>Defines destination networks (e.g., VPC CIDR, on-premises, internet) for client traffic.</li>
+<li>Supports split-tunnel (only specified routes via VPN) or full-tunnel (all traffic via VPN).</li>
+<li><strong>Explanation</strong>: E.g., route 172.31.0.0/16 to VPC, 0.0.0.0/0 for internet.</li>
+</ul>
+</li>
+<li><strong>Authorization Rules</strong>:<ul>
+<li>Restrict access to networks based on AD groups, SAML groups, or all users.</li>
+<li><strong>Explanation</strong>: E.g., allow “ClientVPNGroup” AD group to access 172.31.0.0/16.</li>
+</ul>
+</li>
+<li><strong>Client VPN Configuration File</strong>:<ul>
+<li>Contains endpoint DNS name, authentication details, and certificates for OpenVPN clients.</li>
+<li>Distributed to end users or accessed via self-service portal.</li>
+<li><strong>Explanation</strong>: E.g., .ovpn file for AWS VPN Desktop Client.</li>
+</ul>
+</li>
+<li><strong>Client VPN Network Interface (ENI)</strong>:<ul>
+<li>Created in associated subnets to handle traffic.</li>
+<li>Source NAT (SNAT) translates client IP to ENI IP for VPC communication.</li>
+<li><strong>Explanation</strong>: E.g., ENI in subnet translates 10.2.0.5 to 172.31.1.10.</li>
+</ul>
+</li>
+</ul>
+<h3 id="authentication-methods"><strong>Authentication Methods</strong></h3>
+<ul>
+<li><strong>Active Directory</strong>:<ul>
+<li>Uses AWS Directory Service or on-premises AD via connector.</li>
+<li>Supports MFA via AD or external IdP (e.g., Okta).</li>
+<li><strong>Explanation</strong>: E.g., authenticate users with corporate AD credentials.</li>
+</ul>
+</li>
+<li><strong>Federated (SAML-2.0)</strong>:<ul>
+<li>Uses external IdP (e.g., Okta, Azure AD) for single sign-on (SSO).</li>
+<li>Requires browser for SAML authentication.</li>
+<li><strong>Explanation</strong>: E.g., SSO via Okta for remote employees.</li>
+</ul>
+</li>
+<li><strong>Certificate-Based (Mutual Authentication)</strong>:<ul>
+<li>Requires server certificate in ACM and client certificates.</li>
+<li>Most secure, used with or without user-based authentication.</li>
+<li><strong>Explanation</strong>: E.g., mutual auth with client/server certificates.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-notes"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Exam Relevance</strong>: Understand endpoint setup, target networks, and authentication.</li>
+<li><strong>Mastery Tip</strong>: Compare Client VPN vs. Site-to-Site VPN for remote vs. site connectivity.</li>
+</ul>
+<hr />
+<h3 id="2-client-vpn-performance-features"><strong>2. Client VPN Performance Features</strong></h3>
+<p>Client VPN optimizes secure remote access.</p>
+<h3 id="elastic-scalability"><strong>Elastic Scalability</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Handle variable user demand.</li>
+<li><strong>Features</strong>:<ul>
+<li>Automatically scales up/down based on active connections.</li>
+<li>No need to provision hardware or estimate capacity.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., scale to 4,000 users during WFH spike.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Highlight elasticity for unpredictable workloads.</p>
+</li>
+</ul>
+<h3 id="concurrent-connections"><strong>Concurrent Connections</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Support multiple sessions per user.</li>
+<li><strong>Features</strong>:<ul>
+<li>AWS-provided client supports up to five concurrent sessions.</li>
+<li>Each session uses a unique configuration file for different endpoints.</li>
+<li>Checks for CIDR/routing conflicts to prevent issues.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., connect to prod and dev VPCs simultaneously.</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Know concurrent session limits and conflict checks.</p>
+</li>
+</ul>
+<h3 id="low-latency"><strong>Low Latency</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Fast access to resources.</li>
+<li><strong>Features</strong>:<ul>
+<li>Uses AWS global network for optimized routing.</li>
+<li>Supports TCP/UDP on ports 443, 1194 for flexible connectivity.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., low-latency access to EC2 over cellular networks.</p>
+<p><a href="https://imgs.search.brave.com/mjUN9kNtAF1vE76nMcl1BD1pR440wRNaOR1_x--9YD4/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTZhYmQ1N2Q4/NDg4ZDcyODIyMDZi/MzFmOWNhNjE3Y2E4/Y2YzMThjNjljNDIx/ZjllZmNhYTcwODhl/YTcwNDEzYy9tZWRp/dW0uY29tLw"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: TCP for reliability (cellular), UDP for performance.</p>
+</li>
+</ul>
+<h3 id="key-notes_1"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Performance</strong>: Elasticity + concurrent sessions = flexible remote access.</li>
+<li><strong>Exam Tip</strong>: Emphasize scalability for remote workforce scenarios.</li>
+</ul>
+<hr />
+<h3 id="3-client-vpn-resilience-features"><strong>3. Client VPN Resilience Features</strong></h3>
+<p>Resilience ensures reliable connectivity.</p>
+<h3 id="high-availability"><strong>High Availability</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Minimize downtime.</li>
+<li><strong>Features</strong>:<ul>
+<li>Deployed across multiple AZs in a Region.</li>
+<li>Associate multiple subnets (different AZs) for failover.</li>
+<li><strong>Explanation</strong>: E.g., subnet in us-east-1a fails, traffic routes via us-east-1b.</li>
+</ul>
+</li>
+<li><strong>Exam Tip</strong>: Always associate multiple subnets for HA.</li>
+</ul>
+<h3 id="connection-logging"><strong>Connection Logging</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Monitor and troubleshoot.</li>
+<li><strong>Features</strong>:<ul>
+<li>Logs connection events (e.g., connect, disconnect, errors) to CloudWatch Logs.</li>
+<li>Enables forensics and usage analysis.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., debug failed connections due to auth issues.</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Enable logging for troubleshooting scenarios.</p>
+</li>
+</ul>
+<h3 id="route-redundancy"><strong>Route Redundancy</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Ensure network reachability.</li>
+<li><strong>Features</strong>:<ul>
+<li>Add routes for VPC, peered VPCs, on-premises networks, or internet.</li>
+<li>Supports VPC peering, Transit Gateway, or Site-to-Site VPN for hybrid access.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., route to 10.200.0.0/24 on-premises via Transit Gateway.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Configure routes for hybrid cloud access.</p>
+</li>
+</ul>
+<h3 id="key-notes_2"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Resilience</strong>: Multi-AZ + logging = reliable VPN.</li>
+<li><strong>Exam Tip</strong>: Design HA with multiple subnets and CloudWatch logging.</li>
+</ul>
+<hr />
+<h3 id="4-client-vpn-security-features"><strong>4. Client VPN Security Features</strong></h3>
+<p>Security aligns with SAA-C03’s secure architecture focus.</p>
+<h3 id="encryption"><strong>Encryption</strong></h3>
+<ul>
+<li><strong>In Transit</strong>:<ul>
+<li>TLS for all client-to-endpoint connections.</li>
+<li>Supports OpenVPN protocol (industry-standard).</li>
+<li><strong>Explanation</strong>: E.g., encrypt traffic from remote laptop to VPC.</li>
+</ul>
+</li>
+<li><strong>At Rest</strong>:<ul>
+<li>Not applicable (no persistent data stored on endpoint).</li>
+<li>Resources (e.g., S3, EBS) use their own encryption.</li>
+<li><strong>Explanation</strong>: E.g., EC2 data encrypted with KMS.</li>
+</ul>
+</li>
+</ul>
+<h3 id="authentication"><strong>Authentication</strong></h3>
+<ul>
+<li><strong>AD Integration</strong>:<ul>
+<li>AWS Directory Service or on-premises AD with MFA support.</li>
+<li><strong>Explanation</strong>: E.g., MFA via Okta for AD users.</li>
+</ul>
+</li>
+<li><strong>SAML-2.0</strong>:<ul>
+<li>Federated SSO with external IdP.</li>
+<li><strong>Explanation</strong>: E.g., Azure AD for seamless login.</li>
+</ul>
+</li>
+<li>
+<p><strong>Mutual Authentication</strong>:</p>
+<ul>
+<li>Server certificate in ACM, client certificates for users.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., issue client certs via OpenVPN easy-rsa.</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Mutual auth is most secure, often combined with AD/SAML.</p>
+</li>
+</ul>
+<h3 id="access-control"><strong>Access Control</strong></h3>
+<ul>
+<li><strong>Authorization Rules</strong>:<ul>
+<li>Restrict network access by AD/SAML group or all users.</li>
+<li><strong>Example</strong>: Allow “Developers” group to 172.31.0.0/16.</li>
+</ul>
+</li>
+<li>
+<p><strong>Security Groups</strong>:</p>
+<ul>
+<li>Applied to subnet associations, control traffic to VPC resources.</li>
+<li>Stateful, only outbound rules checked for Client VPN traffic.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., allow port 22 from Client VPN ENI to EC2.</p>
+<p><a href="https://imgs.search.brave.com/uZ-D-ILf3e7do2iP_QdA_HLqcmYrVwBWJ0oiYDgIqeI/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzk3ZWRlYjU0/YTkzMWIyMGFhMTY3/ZjI1NWM1YWU3MjNi/NmY1YzNmNWQ1OTFk/OTc2NDFiMGZiOTA4/OTUyYjA5Ny9yZXBv/c3QuYXdzLw"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Network ACLs (NACLs)</strong>:</p>
+<ul>
+<li>Stateless, apply to subnets for additional control.</li>
+<li><strong>Explanation</strong>: E.g., allow TCP 443 for VPN traffic.</li>
+</ul>
+</li>
+</ul>
+<h3 id="vpc-integration"><strong>VPC Integration</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Secure network isolation.</li>
+<li><strong>Features</strong>:<ul>
+<li>Deploy in private subnets, secure with security groups.</li>
+<li>SNAT translates client IP to ENI IP for VPC access.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., ENI in private subnet for secure EC2 access.</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Configure security groups for subnet associations.</p>
+</li>
+</ul>
+<h3 id="compliance"><strong>Compliance</strong></h3>
+<ul>
+<li><strong>Certifications</strong>: HIPAA, PCI, SOC, ISO, GDPR, FIPS 140-2 (GovCloud).</li>
+<li>
+<p><strong>Explanation</strong>: E.g., deploy for healthcare remote access.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+</ul>
+<h3 id="key-notes_3"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Security</strong>: TLS + mutual auth + security groups = robust protection.</li>
+<li><strong>Exam Tip</strong>: Practice authorization rules and security group configs.</li>
+</ul>
+<hr />
+<h3 id="5-client-vpn-cost-optimization"><strong>5. Client VPN Cost Optimization</strong></h3>
+<p>Cost efficiency is a key exam domain.</p>
+<h3 id="pricing"><strong>Pricing</strong></h3>
+<ul>
+<li><strong>Endpoint Association</strong>:<ul>
+<li>$0.10/hour per subnet association (e.g., 2 subnets = $0.20/hour).</li>
+</ul>
+</li>
+<li><strong>Active Connections</strong>:<ul>
+<li>$0.05/hour per client connection.</li>
+</ul>
+</li>
+<li><strong>Data Transfer</strong>:<ul>
+<li>Standard AWS data transfer rates (e.g., $0.09/GB out to internet).</li>
+</ul>
+</li>
+<li><strong>Example</strong>:<ul>
+<li>1 endpoint, 2 subnets, 100 users (8 hours/day, 20 days/month):<ul>
+<li>Subnets: 2 × $0.10 × 24 × 30 = $144/month.</li>
+<li>Connections: 100 × $0.05 × 8 × 20 = $800/month.</li>
+<li>Total: ~$944/month (excl. data transfer).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Free Tier</strong>: None.</li>
+</ul>
+<h3 id="cost-strategies"><strong>Cost Strategies</strong></h3>
+<ul>
+<li>
+<p><strong>Split-Tunnel</strong>:</p>
+<ul>
+<li>Route only VPC/on-premises traffic via VPN, reducing data transfer costs.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., exclude internet traffic from VPN.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Minimize Subnets</strong>:</p>
+<ul>
+<li>Use one subnet for non-critical workloads, two for HA.</li>
+<li><strong>Explanation</strong>: E.g., single subnet for dev environment.</li>
+</ul>
+</li>
+<li><strong>Connection Management</strong>:<ul>
+<li>Disconnect unused sessions to reduce connection-hour charges.</li>
+<li><strong>Explanation</strong>: E.g., enforce timeouts via client policy.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tagging</strong>:</p>
+<ul>
+<li>Use cost allocation tags to track endpoint costs.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., tag endpoint with “Project:RemoteAccess”.</p>
+<p><a href="https://imgs.search.brave.com/4t9KSu_llLUSu5nBb1eEGdBX6awhzVa6HlgABA-bjMg/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvNjQ1ZDJlMmM2/OTk1ZjY1NzFhMmYz/MDFlYzdiZTM0ZjZi/ZTk5Y2M4NzUzNmZj/NDk1NjEyZGVmOWM2/NjdiN2ZkYi93d3cu/dGVjcmFjZXIuY29t/Lw"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Monitor Usage</strong>:</p>
+<ul>
+<li>Use CloudWatch to identify idle connections.</li>
+<li><strong>Explanation</strong>: E.g., terminate unused sessions.</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-notes_4"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Cost Savings</strong>: Split-tunnel + minimal subnets = lower costs.</li>
+<li><strong>Exam Tip</strong>: Calculate costs for subnet associations and connections.</li>
+</ul>
+<hr />
+<h3 id="6-client-vpn-advanced-features"><strong>6. Client VPN Advanced Features</strong></h3>
+<h3 id="split-tunnel-vs-full-tunnel"><strong>Split-Tunnel vs. Full-Tunnel</strong></h3>
+<ul>
+<li>
+<p><strong>Split-Tunnel</strong>:</p>
+<ul>
+<li>Only specified routes (e.g., VPC, on-premises) go through VPN.</li>
+<li>Reduces data transfer costs, improves performance.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., route 172.31.0.0/16 to VPC, internet via local ISP.</p>
+<p><a href="https://imgs.search.brave.com/uZ-D-ILf3e7do2iP_QdA_HLqcmYrVwBWJ0oiYDgIqeI/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzk3ZWRlYjU0/YTkzMWIyMGFhMTY3/ZjI1NWM1YWU3MjNi/NmY1YzNmNWQ1OTFk/OTc2NDFiMGZiOTA4/OTUyYjA5Ny9yZXBv/c3QuYXdzLw"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Full-Tunnel</strong>:</p>
+<ul>
+<li>All traffic (including internet) goes through VPN.</li>
+<li>Useful for secure internet access or compliance.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., route 0.0.0.0/0 to VPC for internet access.</p>
+<p><a href="https://imgs.search.brave.com/uZ-D-ILf3e7do2iP_QdA_HLqcmYrVwBWJ0oiYDgIqeI/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzk3ZWRlYjU0/YTkzMWIyMGFhMTY3/ZjI1NWM1YWU3MjNi/NmY1YzNmNWQ1OTFk/OTc2NDFiMGZiOTA4/OTUyYjA5Ny9yZXBv/c3QuYXdzLw"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Split-tunnel for cost, full-tunnel for security.</p>
+</li>
+</ul>
+<h3 id="self-service-portal"><strong>Self-Service Portal</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Simplify client access.</li>
+<li><strong>Features</strong>:<ul>
+<li>Web portal for users to download AWS VPN Desktop Client and configuration file.</li>
+<li>Not available with mutual authentication.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., users download .ovpn file for easy setup.</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Know portal limitations with mutual auth.</p>
+</li>
+</ul>
+<h3 id="hybrid-cloud-access"><strong>Hybrid Cloud Access</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Connect to on-premises networks.</li>
+<li><strong>Features</strong>:<ul>
+<li>Route to on-premises CIDR via VPC peering, Transit Gateway, or Site-to-Site VPN.</li>
+<li>Requires authorization rule for on-premises network.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., access 10.200.0.0/24 via Site-to-Site VPN.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Configure routes and rules for hybrid scenarios.</p>
+</li>
+</ul>
+<h3 id="dns-resolution"><strong>DNS Resolution</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Resolve VPC/private resources.</li>
+<li><strong>Features</strong>:<ul>
+<li>Specify DNS servers (e.g., Route 53 Resolver, on-premises DNS).</li>
+<li>VPC DNS server typically at .2 address (e.g., 172.31.0.2).</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation</strong>: E.g., resolve EC2 private DNS via VPC DNS.</p>
+<p><a href="https://imgs.search.brave.com/mjUN9kNtAF1vE76nMcl1BD1pR440wRNaOR1_x--9YD4/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTZhYmQ1N2Q4/NDg4ZDcyODIyMDZi/MzFmOWNhNjE3Y2E4/Y2YzMThjNjljNDIx/ZjllZmNhYTcwODhl/YTcwNDEzYy9tZWRp/dW0uY29tLw"></a></p>
+</li>
+<li>
+<p><strong>Exam Tip</strong>: Configure DNS for hybrid DNS resolution.</p>
+</li>
+</ul>
+<h3 id="key-notes_5"><strong>Key Notes</strong>:</h3>
+<ul>
+<li><strong>Flexibility</strong>: Split-tunnel + hybrid access = versatile VPN.</li>
+<li><strong>Exam Tip</strong>: Know split-tunnel setup and DNS configuration.</li>
+</ul>
+<hr />
+<h3 id="7-client-vpn-use-cases"><strong>7. Client VPN Use Cases</strong></h3>
+<p>Understand practical applications.</p>
+<h3 id="remote-workforce"><strong>Remote Workforce</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Client VPN endpoint, AD authentication, split-tunnel.</li>
+<li><strong>Features</strong>: Secure access to VPC and on-premises resources.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., employees access ERP in VPC from home.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+</ul>
+<h3 id="cloud-migration"><strong>Cloud Migration</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Full-tunnel, hybrid routes to on-premises.</li>
+<li><strong>Features</strong>: Seamless access to apps during migration.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., access legacy app on-premises and new app in VPC.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+</ul>
+<h3 id="iot-device-connectivity"><strong>IoT Device Connectivity</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Certificate-based authentication, split-tunnel.</li>
+<li><strong>Features</strong>: Secure device-to-VPC communication.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., IoT sensors access VPC for data processing.</p>
+<p><a href="https://imgs.search.brave.com/RZ9xPuN87dYqtYCk4TONd4taMtlovCl-Zq_UDgaeg6s/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWZkOTdiMmU0/NmQ1MmFmNjEyOWEz/M2VjNmQ4YzFlM2Zk/MjBmYWNlYjJiNjMx/YjI2YmQxNzIyYmFi/NGU1NzM1NC9rMjFh/Y2FkZW15LmNvbS8"></a></p>
+</li>
+</ul>
+<h3 id="secure-internet-access"><strong>Secure Internet Access</strong></h3>
+<ul>
+<li><strong>Setup</strong>: Full-tunnel, route 0.0.0.0/0 to VPC.</li>
+<li><strong>Features</strong>: Route all traffic via VPC for compliance.</li>
+<li>
+<p><strong>Explanation</strong>: E.g., enforce corporate firewall for remote users.</p>
+<p><a href="https://imgs.search.brave.com/uZ-D-ILf3e7do2iP_QdA_HLqcmYrVwBWJ0oiYDgIqeI/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzk3ZWRlYjU0/YTkzMWIyMGFhMTY3/ZjI1NWM1YWU3MjNi/NmY1YzNmNWQ1OTFk/OTc2NDFiMGZiOTA4/OTUyYjA5Ny9yZXBv/c3QuYXdzLw"></a></p>
+</li>
+</ul>
+<hr />
+<h3 id="8-client-vpn-vs-other-networking-services"><strong>8. Client VPN vs. Other Networking Services</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Client VPN</strong></th>
+<th><strong>Site-to-Site VPN</strong></th>
+<th><strong>Direct Connect</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Client-based VPN</td>
+<td>Site-based VPN</td>
+<td>Dedicated Network</td>
+</tr>
+<tr>
+<td><strong>Workload</strong></td>
+<td>Remote user access</td>
+<td>Site-to-site connectivity</td>
+<td>High-bandwidth, low-latency</td>
+</tr>
+<tr>
+<td><strong>Protocol</strong></td>
+<td>OpenVPN, TLS</td>
+<td>IPsec</td>
+<td>Private line</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Scalable, elastic</td>
+<td>Fixed tunnels, ECMP</td>
+<td>Up to 100 Gbps</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>$0.05/conn-hour, $0.10/subnet-hour</td>
+<td>$0.05/tunnel-hour</td>
+<td>$0.02–$0.20/GB</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Remote workforce</td>
+<td>Branch office to VPC</td>
+<td>Enterprise hybrid cloud</td>
+</tr>
+</tbody>
+</table>
+<h3 id="explanation"><strong>Explanation</strong>:</h3>
+<ul>
+<li><strong>Client VPN</strong>: Secure remote user access to VPC/on-premises.</li>
+<li><strong>Site-to-Site VPN</strong>: Encrypted site-to-site connectivity.</li>
+<li><strong>Direct Connect</strong>: Dedicated, high-bandwidth hybrid connection.</li>
+</ul>
+<hr />
+<h3 id="9-detailed-explanations-for-mastery"><strong>9. Detailed Explanations for Mastery</strong></h3>
+<ul>
+<li>
+<p><strong>Split-Tunnel Configuration</strong>:</p>
+<ul>
+<li><strong>Example</strong>: Route 172.31.0.0/16 to VPC, exclude internet traffic.</li>
+<li>
+<p><strong>Why It Matters</strong>: Cost savings, performance—exam favorite.</p>
+<p><a href="https://imgs.search.brave.com/uZ-D-ILf3e7do2iP_QdA_HLqcmYrVwBWJ0oiYDgIqeI/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzk3ZWRlYjU0/YTkzMWIyMGFhMTY3/ZjI1NWM1YWU3MjNi/NmY1YzNmNWQ1OTFk/OTc2NDFiMGZiOTA4/OTUyYjA5Ny9yZXBv/c3QuYXdzLw"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Hybrid Cloud Access</strong>:</p>
+<ul>
+<li><strong>Example</strong>: Route 10.200.0.0/24 to on-premises via Transit Gateway.</li>
+<li>
+<p><strong>Why It Matters</strong>: Common hybrid cloud scenario.</p>
+<p><a href="https://imgs.search.brave.com/Q3-FdI89HQ5XjoM9ebI7Z8OVdcuf6x6ueMCkPrADf2k/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Concurrent Connections</strong>:</p>
+<ul>
+<li><strong>Example</strong>: Connect to prod (us-east-1) and dev (us-west-2) endpoints.</li>
+<li>
+<p><strong>Why It Matters</strong>: New feature, enhances flexibility.</p>
+<p><a href="https://imgs.search.brave.com/kvi-2yxLRfXCwYL8Hdyik1HLlZTl6Ua2dabLSq8ebkk/rs:fit:64:0:0:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWM4ZmQwZjYz/OTBjM2U4MjU0OWZh/N2M0YTVmZWQzMTk2/YTdjYWZmMjQ5ODVi/NTlhYzdiZjMzZWFk/MjZhYWY5My9kb2Nz/LmF3cy5hbWF6b24u/Y29tLw"></a></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="10-quick-reference-table"><strong>10. Quick Reference Table</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Key Detail</strong></th>
+<th><strong>Exam Relevance</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client VPN Endpoint</td>
+<td>Terminate VPN sessions</td>
+<td>Regional, multi-AZ</td>
+<td>Core Concept</td>
+</tr>
+<tr>
+<td>Target Network</td>
+<td>VPC access</td>
+<td>Subnet in VPC, multi-AZ for HA</td>
+<td>Core Concept</td>
+</tr>
+<tr>
+<td>Split-Tunnel</td>
+<td>Optimize traffic</td>
+<td>Route only VPC/on-premises traffic</td>
+<td>Performance, Cost</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Secure access</td>
+<td>AD, SAML, mutual auth</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>Authorization Rules</td>
+<td>Restrict access</td>
+<td>AD/SAML groups, network CIDR</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>Connection Logging</td>
+<td>Troubleshoot</td>
+<td>CloudWatch Logs for forensics</td>
+<td>Resilience</td>
+</tr>
+<tr>
+<td>Concurrent Connections</td>
+<td>Multi-session access</td>
+<td>Up to 5 sessions, AWS client</td>
+<td>Performance</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made By TechiKrish
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
