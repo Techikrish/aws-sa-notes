@@ -1,0 +1,124 @@
+site_name: AWS Solution Architect Associate Notes
+
+theme:
+  name: material
+  palette:
+    
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    
+    - scheme: slate
+      primary: light-blue
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+  
+
+copyright: Made By TechiKrish
+
+repo_name: ⭐ Give me Star
+repo_url: https://github.com/TechiKrish/aws-saa-notes  
+edit_uri: ""  
+
+extra:
+  generator: false
+
+nav:
+  - Home: index.md
+  - Analytics:
+      - Amazon Athena: Analytics/Amazon Athena.md
+      - Amazon EMR: Analytics/Amazon EMR.md
+      - Amazon Kinesis: Analytics/Amazon Kinesis.md
+      - AWS Glue: Analytics/AWS Glue.md
+      - Others: Analytics/Others.md
+  - Application Integration:
+      - Amazon EventBridge: Application Integration/Amazon EventBridge.md
+      - Amazon MQ: Application Integration/Amazon MQ.md
+      - Amazon Simple Notification Service (Amazon SNS): Application Integration/Amazon Simple Notification Service (Amazon SNS).md
+      - Amazon Simple Queue Service (Amazon SQS): Application Integration/Amazon Simple Queue Service (Amazon SQS).md
+      - AWS Step Functions: Application Integration/AWS Step Functions.md
+      - Others: Application Integration/Others.md
+  - AWS Cost Management:
+      - AWS Cost Management: AWS Cost Management/AWS Cost Management.md
+  - Compute:
+      - AWS Batch: Compute/AWS Batch.md
+      - AWS Outposts: Compute/AWS Outposts.md
+      - AWS Serverless Application Repository: Compute/AWS Serverless Application Repository.md
+      - AWS Wavelength: Compute/AWS Wavelength.md
+      - EC2 Auto Scaling: Compute/EC2 Auto Scaling.md
+      - EC2: Compute/EC2.md
+      - Elastic Beanstalk: Compute/Elastic Beanstalk.md
+      - VMware Cloud on AWS: Compute/VMware Cloud on AWS.md
+  - Containers:
+      - Containers: Containers/Containers.md
+  - Database:
+      - Amazon Athena: Database/Amazon Athena.md
+      - Amazon Aurora: Database/Amazon Aurora.md
+      - Amazon DocumentDB: Database/Amazon DocumentDB.md
+      - Amazon ElastiCache: Database/Amazon ElastiCache.md
+      - Amazon Keyspaces: Database/Amazon Keyspaces.md
+      - Amazon Neptune: Database/Amazon Neptune.md
+      - Amazon RDS: Database/Amazon RDS.md
+      - Amazon Redshift: Database/Amazon Redshift.md
+      - DynamoDB: Database/dynamo db.md
+  - Security, Identity, and Compliance:
+      - Amazon Cognito: Security, Identity, and Compliance/Amazon Cognito.md
+      - Amazon GuardDuty: Security, Identity, and Compliance/Amazon GuardDuty.md
+      - Amazon Inspector: Security, Identity, and Compliance/Amazon Inspector.md
+      - Amazon Macie: Security, Identity, and Compliance/Amazon Macie.md
+      - AWS Certificate Manager (ACM): Security, Identity, and Compliance/AWS Certificate Manager (ACM).md
+      - AWS Identity and Access Management (IAM): Security, Identity, and Compliance/AWS Identity and Access Management (IAM).md
+      - AWS Key Management Service (AWS KMS): Security, Identity, and Compliance/AWS Key Management Service (AWS KMS).md
+      - AWS Secrets Manager: Security, Identity, and Compliance/AWS Secrets Manager.md
+      - AWS Shield: Security, Identity, and Compliance/AWS Shield.md
+      - AWS Web Application Firewall (AWS WAF): Security, Identity, and Compliance/AWS Web Application Firewall (AWS WAF).md
+      - Others: Security, Identity, and Compliance/Others.md
+  - Serverless:
+      - AWS AppSync: Serverless/AWS AppSync.md
+      - AWS Fargate: Serverless/AWS Fargate.md
+      - AWS Lambda: Serverless/AWS Lambda.md
+  - Storage:
+      - Amazon EBS: Storage/Amazon EBS.md
+      - Amazon EFS: Storage/Amazon EFS.md
+      - Amazon FSx: Storage/Amazon FSx.md
+      - AWS Backup: Storage/AWS Backup.md
+      - AWS S3: Storage/AWS S3.md
+      - AWS Storage Gateway: Storage/AWS Storage Gateway.md
+  - Front-End Web and Mobile:
+      - Amazon API Gateway: Front-End Web and Mobile/Amazon API Gateway.md
+      - AWS Amplify: Front-End Web and Mobile/AWS Amplify.md
+      - Others: Front-End Web and Mobile/Others.md
+  - Machine Learning:
+      - Machine Learning: Machine Learning/Machine Learning.md
+  - Management and Governance:
+      - Amazon CloudWatch: Management and Governance/Amazon CloudWatch.md
+      - AWS CloudFormation: Management and Governance/AWS CloudFormation.md
+      - AWS CloudTrail: Management and Governance/AWS CloudTrail.md
+      - AWS Control Tower: Management and Governance/AWS Control Tower.md
+      - AWS Organizations: Management and Governance/AWS Organizations.md
+      - AWS Systems Manager: Management and Governance/AWS Systems Manager.md
+      - AWS Trusted Advisor: Management and Governance/AWS Trusted Advisor.md
+      - Others: Management and Governance/Others.md
+  - Media Services:
+      - Media Services: Media Services/Media Services.md
+  - Migration and Transfer:
+      - Migration and Transfer: Migration and Transfer/Migration and Transfer.md
+  - Networking and Content Delivery:
+      - Amazon Route 53: Networking and Content Delivery/Amazon Route 53.md
+      - Amazon VPC: Networking and Content Delivery/Amazon VPC.md
+      - AWS Client VPN: Networking and Content Delivery/AWS Client VPN.md
+      - AWS CloudFront: Networking and Content Delivery/AWS Cloudfront.md
+      - AWS Direct Connect: Networking and Content Delivery/AWS Direct Connect.md
+      - AWS Elastic Load Balancing (ELB): Networking and Content Delivery/AWS Elastic Load Balancing (ELB).md
+      - AWS Global Accelerator: Networking and Content Delivery/AWS Global Accelerator.md
+      - AWS PrivateLink: Networking and Content Delivery/AWS PrivateLink.md
+      - AWS Site-to-Site VPN: Networking and Content Delivery/AWS Site-to-Site VPN.md
+      - AWS Transit Gateway: Networking and Content Delivery/AWS Transit Gateway.md
