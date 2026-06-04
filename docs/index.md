@@ -11,10 +11,4 @@ The notes serve as a focused resource to:
 - Summarize key AWS services for the SAA-C03 exam.
 - Address exam domains: Secure Architectures, Resilient Architectures, High-Performing Architectures, Cost-Optimized Architectures, and Operational Excellence.
 
-## How They Were Created
-
-- **AWS Documentation**: Official sources for technical accuracy.
-- **SAA-C03 Exam Guide**: Aligns with domain requirements.
-- **Sonnet 3.7,Gemini 2.5 and Grok 3**
-
-## consider giving the repo a ⭐ to support this effort
+Please consider giving the repo a ⭐ to support this effort

@@ -1,0 +1,32 @@
+---
+import { BookOpen, Github, Menu, Search } from "lucide-astro";
+import { site, withBase } from "@/lib/site";
+---
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <button class="icon-button nav-toggle" type="button" aria-label="Open navigation" data-toggle-nav>
+      <Menu size={20} strokeWidth={2} />
+    </button>
+
+    <a class="brand" href={withBase("/")}>
+      <span class="brand__mark" aria-hidden="true">
+        <BookOpen size={18} strokeWidth={2.2} />
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">{site.shortName}</span>
+        <span class="brand__tagline">Solutions Architect Associate</span>
+      </span>
+    </a>
+
+    <button class="search-trigger" type="button" data-open-search>
+      <Search size={18} strokeWidth={2} />
+      <span>Search notes</span>
+      <kbd>Ctrl K</kbd>
+    </button>
+
+    <a class="icon-button repo-link" href={site.repoUrl} target="_blank" rel="noreferrer" aria-label="Open GitHub repository">
+      <Github size={20} strokeWidth={2} />
+    </a>
+  </div>
+</header>

@@ -1,5 +1,28 @@
 # AWS SAA Study Notes
 
+Custom Astro site for AWS Certified Solutions Architect - Associate study notes.
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+The build reads Markdown directly from `docs/`, generates static pages, and creates a Pagefind full-text search index in `dist/pagefind`.
+
+## Deployment
+
+GitHub Actions builds and deploys the `dist/` output to GitHub Pages on every push to `main`. In the repository settings, Pages should use **GitHub Actions** as the source.
+
+
 ## Introduction
 
 Welcome to my collection of study notes for the **AWS Certified Solutions Architect – Associate (SAA-C03) exam**. These notes are designed to help you master the skills needed to design secure, resilient, high-performing, cost-optimized, and operationally excellent architectures on AWS, as outlined in the AWS Certified Solutions Architect – Associate Exam Guide. They cover essential AWS services, from Amplify to Kinesis Video Streams, tailored for exam success.

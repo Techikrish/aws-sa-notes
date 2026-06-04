@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro cache
+.astro/
+
+# Pagefind index (built at deploy time)
+.pagefind/
+
+# Dev server logs and PID files
+*.log
+*.pid
+
+# Debug logs
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp/backup CSS files
+src/styles/full_backup.css
+src/styles/global_formatted.css

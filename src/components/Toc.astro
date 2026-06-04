@@ -1,0 +1,36 @@
+---
+import { ListTree } from "lucide-astro";
+
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+interface Props {
+  headings?: Heading[];
+}
+
+const headings = (Astro.props.headings ?? [])
+  .filter((heading) => heading.depth > 1 && heading.depth < 4)
+  .map((heading) => ({
+    ...heading,
+    text: heading.text.endsWith("#") ? heading.text.slice(0, -1).trim() : heading.text.trim()
+  }));
+---
+
+{headings.length > 0 && (
+  <aside class="toc" aria-label="On this page">
+    <div class="toc__title">
+      <ListTree size={16} strokeWidth={2} />
+      <span>On this page</span>
+    </div>
+    <ol>
+      {headings.map((heading) => (
+        <li class={`toc__item toc__item--depth-${heading.depth}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  </aside>
+)}

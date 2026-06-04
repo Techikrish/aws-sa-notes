@@ -1,0 +1,89 @@
+---
+import { render } from "astro:content";
+import { ArrowLeft, ArrowRight } from "lucide-astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {
+  buildNavigation,
+  getAdjacentNotes,
+  getNotes,
+  noteUrl,
+  site,
+  type Note
+} from "@/lib/site";
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note, notes }
+  }));
+}
+
+interface Props {
+  note: Note;
+  notes: Note[];
+}
+
+const { note, notes } = Astro.props;
+const nav = buildNavigation(notes);
+const { Content, headings } = await render(note.entry);
+const adjacent = getAdjacentNotes(notes, note.id);
+const categoryStart = notes.find((item) => item.category === note.category) ?? note;
+---
+
+<BaseLayout
+  title={note.title}
+  description={`${note.title} study notes for the AWS SAA-C03 exam.`}
+  nav={nav}
+  currentId={note.id}
+  headings={headings}
+>
+  <article class="doc-page" data-pagefind-body>
+    <header class="doc-header">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href={noteUrl(categoryStart.id)}>{note.category}</a>
+        <span>/</span>
+        <span>{note.title}</span>
+      </nav>
+      <p class="eyebrow">{note.category}</p>
+      <h1>{note.title}</h1>
+      <p class="doc-header__summary">
+        Focused AWS Solutions Architect Associate notes from the {note.category} domain.
+      </p>
+    </header>
+
+    <div class="markdown-body">
+      <Content />
+    </div>
+
+    <footer class="doc-footer">
+      {adjacent.previous ? (
+        <a class="doc-pager doc-pager--previous" href={noteUrl(adjacent.previous.id)}>
+          <ArrowLeft size={18} strokeWidth={2} />
+          <span>
+            <small>Previous</small>
+            {adjacent.previous.title}
+          </span>
+        </a>
+      ) : (
+        <span></span>
+      )}
+
+      {adjacent.next && (
+        <a class="doc-pager doc-pager--next" href={noteUrl(adjacent.next.id)}>
+          <span>
+            <small>Next</small>
+            {adjacent.next.title}
+          </span>
+          <ArrowRight size={18} strokeWidth={2} />
+        </a>
+      )}
+    </footer>
+
+    <p class="edit-note">
+      Found an issue? Improve this note in the
+      <a href={`${site.repoUrl}/tree/main/docs/${encodeURI(note.id)}.md`} target="_blank" rel="noreferrer">GitHub repo</a>.
+    </p>
+  </article>
+</BaseLayout>

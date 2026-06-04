@@ -1,0 +1,79 @@
+---
+import Header from "@/components/Header.astro";
+import SearchModal from "@/components/SearchModal.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import Toc from "@/components/Toc.astro";
+import { site, type NavCategory, withBase } from "@/lib/site";
+import "@/styles/global.css";
+
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+interface Props {
+  title: string;
+  description?: string;
+  nav: NavCategory[];
+  currentId?: string;
+  headings?: Heading[];
+}
+
+const { title, description = site.description, nav, currentId, headings = [] } = Astro.props;
+const pageTitle = title === site.name ? site.name : `${title} | ${site.shortName}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f1117" />
+    <title>{pageTitle}</title>
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="read-progress" id="read-progress" aria-hidden="true"></div>
+    <Header />
+    <div class="nav-backdrop" data-toggle-nav></div>
+    <div class="app-shell">
+      <Sidebar nav={nav} currentId={currentId} />
+      <main id="main-content" class="main-content">
+        <slot />
+      </main>
+      <Toc headings={headings} />
+    </div>
+    <SearchModal />
+
+    <script>
+      const body = document.body;
+      const progress = document.getElementById("read-progress");
+
+      document.querySelectorAll("[data-toggle-nav]").forEach((button) => {
+        button.addEventListener("click", () => {
+          body.classList.toggle("nav-open");
+        });
+      });
+
+      document.querySelectorAll(".sidebar a").forEach((link) => {
+        link.addEventListener("click", () => {
+          body.classList.remove("nav-open");
+        });
+      });
+
+      function updateProgress() {
+        if (!progress) return;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = scrollHeight <= 0 ? 0 : Math.min(scrollTop / scrollHeight, 1);
+        progress.style.transform = `scaleX(${ratio})`;
+      }
+
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      window.addEventListener("resize", updateProgress);
+    </script>
+  </body>
+</html>

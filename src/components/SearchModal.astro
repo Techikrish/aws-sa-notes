@@ -1,0 +1,89 @@
+---
+import { Search, X } from "lucide-astro";
+import { withBase } from "@/lib/site";
+
+const pagefindUi = withBase("/pagefind/pagefind-ui.js");
+const pagefindCss = withBase("/pagefind/pagefind-ui.css");
+const searchBase = withBase("/");
+---
+
+<link rel="stylesheet" href={pagefindCss} />
+
+<div class="search-modal" id="search-modal" hidden>
+  <div class="search-modal__backdrop" data-close-search></div>
+  <section class="search-modal__panel" role="dialog" aria-modal="true" aria-label="Search notes">
+    <div class="search-modal__header">
+      <div class="search-modal__title">
+        <Search size={18} strokeWidth={2} />
+        <span>Search AWS SAA notes</span>
+      </div>
+      <button class="icon-button" type="button" aria-label="Close search" data-close-search>
+        <X size={20} strokeWidth={2} />
+      </button>
+    </div>
+    <div id="pagefind-search"></div>
+  </section>
+</div>
+
+<script define:vars={{ pagefindUi, searchBase }}>
+  let searchLoaded = false;
+  const modal = document.getElementById("search-modal");
+
+  async function loadSearch() {
+    if (searchLoaded) return;
+
+    try {
+      const { PagefindUI } = await import(pagefindUi);
+      new PagefindUI({
+        element: "#pagefind-search",
+        showSubResults: true,
+        resetStyles: false,
+        baseUrl: searchBase
+      });
+      searchLoaded = true;
+    } catch (error) {
+      const target = document.getElementById("pagefind-search");
+      if (target) {
+        target.innerHTML = '<p class="search-error">Search index is available after running the production build.</p>';
+      }
+    }
+  }
+
+  async function openSearch() {
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.classList.add("search-open");
+    await loadSearch();
+    window.setTimeout(() => {
+      const input = modal.querySelector("input");
+      if (input) input.focus();
+    }, 30);
+  }
+
+  function closeSearch() {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.classList.remove("search-open");
+  }
+
+  document.querySelectorAll("[data-open-search]").forEach((button) => {
+    button.addEventListener("click", openSearch);
+  });
+
+  document.querySelectorAll("[data-close-search]").forEach((button) => {
+    button.addEventListener("click", closeSearch);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const isSearchShortcut = (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k";
+    if (isSearchShortcut) {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeSearch();
+    }
+  });
+</script>

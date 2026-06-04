@@ -1,0 +1,151 @@
+---
+import { getEntry, render } from "astro:content";
+import { BookOpen, Database, Network, Search, Server, ShieldCheck, WalletCards } from "lucide-astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { buildNavigation, getNotes, noteUrl, site } from "@/lib/site";
+
+const notes = await getNotes();
+const nav = buildNavigation(notes);
+const home = await getEntry("notes", "index");
+const homeContent = home ? await render(home) : undefined;
+const Content = homeContent?.Content;
+
+const categories = nav.map((category) => ({
+  ...category,
+  href: noteUrl(category.notes[0].id)
+}));
+
+const featured = [
+  "Compute/EC2",
+  "Networking and Content Delivery/Amazon VPC",
+  "Storage/AWS S3",
+  "Database/Amazon RDS",
+  "Security, Identity, and Compliance/AWS Identity and Access Management (IAM)",
+  "Serverless/AWS Lambda"
+]
+  .map((id) => notes.find((note) => note.id === id))
+  .filter(Boolean);
+
+const stats = [
+  { label: "Service notes", value: notes.length },
+  { label: "Exam domains", value: nav.length },
+  { label: "Static search", value: "Full text" }
+];
+
+const domainCards = [
+  {
+    title: "Secure Architectures",
+    text: "IAM, KMS, WAF, Shield, Cognito, GuardDuty, Macie, and service-level access controls.",
+    icon: ShieldCheck
+  },
+  {
+    title: "Resilient Architectures",
+    text: "Multi-AZ design, load balancing, backups, replication, queues, and recovery patterns.",
+    icon: Network
+  },
+  {
+    title: "High-Performing Systems",
+    text: "Compute, storage, database, analytics, and network choices for performance scenarios.",
+    icon: Server
+  },
+  {
+    title: "Cost Optimization",
+    text: "Pricing models, right sizing, storage classes, reservations, Savings Plans, and cost tools.",
+    icon: WalletCards
+  }
+];
+---
+
+<BaseLayout title={site.name} description={site.description} nav={nav}>
+  <section class="home-hero" data-pagefind-body>
+    <div class="home-hero__content">
+      <p class="eyebrow">AWS Certified Solutions Architect - Associate</p>
+      <h1>Study faster with a searchable AWS SAA-C03 command center.</h1>
+      <p class="home-hero__lead">
+        Browse concise service notes, jump between exam domains, and search the whole guide without leaving the page.
+      </p>
+      <div class="home-hero__actions">
+        <button class="primary-action" type="button" data-open-search>
+          <Search size={18} strokeWidth={2} />
+          <span>Search the guide</span>
+        </button>
+        <a class="secondary-action" href={noteUrl("Compute/EC2")}>
+          <BookOpen size={18} strokeWidth={2} />
+          <span>Start with EC2</span>
+        </a>
+      </div>
+    </div>
+    <div class="signal-panel" aria-label="Study guide summary">
+      {stats.map((stat) => (
+        <div class="signal-panel__item">
+          <span>{stat.value}</span>
+          <small>{stat.label}</small>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="dashboard-section" aria-labelledby="featured-heading">
+    <div class="section-heading">
+      <p class="eyebrow">Fast paths</p>
+      <h2 id="featured-heading">Core services to review first</h2>
+    </div>
+    <div class="quick-grid">
+      {featured.map((note) => note && (
+        <a class="quick-card" href={noteUrl(note.id)}>
+          <span>{note.category}</span>
+          <strong>{note.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="dashboard-section" aria-labelledby="domains-heading">
+    <div class="section-heading">
+      <p class="eyebrow">Exam coverage</p>
+      <h2 id="domains-heading">Study by architecture domain</h2>
+    </div>
+    <div class="domain-grid">
+      {domainCards.map((card) => {
+        const Icon = card.icon;
+        return (
+          <article class="domain-card">
+            <div class="domain-card__icon">
+              <Icon size={22} strokeWidth={2} />
+            </div>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="dashboard-section" aria-labelledby="categories-heading">
+    <div class="section-heading section-heading--split">
+      <div>
+        <p class="eyebrow">Navigation</p>
+        <h2 id="categories-heading">All note categories</h2>
+      </div>
+      <p>{notes.length} notes generated directly from the docs folder.</p>
+    </div>
+    <div class="category-grid">
+      {categories.map((category) => (
+        <a class="category-card" href={category.href}>
+          <div>
+            <strong>{category.name}</strong>
+            <span>{category.notes.length} notes</span>
+          </div>
+          <small>{category.notes.slice(0, 3).map((note) => note.title).join(", ")}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {Content && (
+    <section class="intro-panel markdown-body" aria-label="Introduction">
+      <Database size={22} strokeWidth={2} aria-hidden="true" />
+      <Content />
+    </section>
+  )}
+</BaseLayout>

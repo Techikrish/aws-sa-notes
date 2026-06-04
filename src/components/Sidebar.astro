@@ -1,0 +1,45 @@
+---
+import { Home } from "lucide-astro";
+import type { NavCategory } from "@/lib/site";
+import { noteUrl, withBase } from "@/lib/site";
+
+interface Props {
+  nav: NavCategory[];
+  currentId?: string;
+}
+
+const { nav, currentId } = Astro.props;
+---
+
+<aside class="sidebar" id="site-sidebar" aria-label="Documentation navigation">
+  <nav class="sidebar__nav">
+    <a class:list={["sidebar__home", !currentId && "is-active"]} href={withBase("/")}>
+      <Home size={17} strokeWidth={2} />
+      <span>Study Dashboard</span>
+    </a>
+
+    <div class="sidebar__groups">
+      {nav.map((category) => {
+        const activeCategory = category.notes.some((note) => note.id === currentId);
+
+        return (
+          <details class="sidebar-group" open>
+            <summary class:list={["sidebar-group__summary", activeCategory && "is-active"]}>
+              <span>{category.name}</span>
+              <span class="sidebar-group__count">{category.notes.length}</span>
+            </summary>
+            <ol class="sidebar-group__links">
+              {category.notes.map((note) => (
+                <li>
+                  <a class:list={[note.id === currentId && "is-active"]} href={noteUrl(note.id)}>
+                    {note.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </details>
+        );
+      })}
+    </div>
+  </nav>
+</aside>
