@@ -5,6 +5,7 @@ import { withBase } from "@/lib/site";
 const pagefindUi = withBase("/pagefind/pagefind-ui.js");
 const pagefindCss = withBase("/pagefind/pagefind-ui.css");
 const searchBase = withBase("/");
+const bundlePath = withBase("/pagefind/");
 ---
 
 <link rel="stylesheet" href={pagefindCss} />
@@ -25,7 +26,7 @@ const searchBase = withBase("/");
   </section>
 </div>
 
-<script define:vars={{ pagefindUi, searchBase }}>
+<script define:vars={{ pagefindUi, searchBase, bundlePath }}>
   let searchLoaded = false;
   const modal = document.getElementById("search-modal");
 
@@ -33,15 +34,21 @@ const searchBase = withBase("/");
     if (searchLoaded) return;
 
     try {
-      const { PagefindUI } = await import(pagefindUi);
-      new PagefindUI({
-        element: "#pagefind-search",
-        showSubResults: true,
-        resetStyles: false,
-        baseUrl: searchBase
-      });
-      searchLoaded = true;
+      await import(pagefindUi);
+      if (typeof window.PagefindUI !== "undefined") {
+        new window.PagefindUI({
+          element: "#pagefind-search",
+          bundlePath: bundlePath,
+          showSubResults: true,
+          resetStyles: false,
+          baseUrl: searchBase
+        });
+        searchLoaded = true;
+      } else {
+        throw new Error("PagefindUI did not load globally.");
+      }
     } catch (error) {
+      console.error(error);
       const target = document.getElementById("pagefind-search");
       if (target) {
         target.innerHTML = '<p class="search-error">Search index is available after running the production build.</p>';
