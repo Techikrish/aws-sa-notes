@@ -85,12 +85,7 @@ To add new content:
 2. Use standard Markdown syntax with proper frontmatter
 3. Submit a pull request (see [CONTRIBUTING.md](CONTRIBUTING.md))
 
-## How These Notes Were Created
 
-- **AWS Documentation**: Official sources for technical accuracy
-- **SAA-C03 Exam Guide**: Content aligns with exam requirements
-- **AI Assistance**: Created with Claude Sonnet 3.7, Gemini 2.5, and Grok 3
-- **Community Contributions**: Welcomed and appreciated
 
 ## License
 
