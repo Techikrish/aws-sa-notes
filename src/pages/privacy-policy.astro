@@ -1,0 +1,105 @@
+---
+import { ArrowLeft } from "lucide-astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { buildNavigation, getNotes, site, withBase } from "@/lib/site";
+
+const notes = await getNotes();
+const nav = buildNavigation(notes);
+const appName = "AWS SAA Notes";
+const appPackage = "com.techikrish.awssaanotes";
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`Privacy Policy for ${appName} Android app.`}
+  nav={nav}
+>
+  <article class="doc-page" data-pagefind-body>
+    <header class="doc-header">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="doc-header__summary">
+        {appName} respects your privacy. This policy explains how your data is handled.
+      </p>
+    </header>
+
+    <div class="markdown-body">
+      <p><strong>Last updated:</strong> June 11, 2026</p>
+
+      <h2>Overview</h2>
+      <p>
+        {appName} (<strong>"we"</strong>, <strong>"our"</strong>, or <strong>"the app"</strong>) is a fully offline
+        study companion for the AWS Certified Solutions Architect - Associate (SAA-C03) exam.
+        This Privacy Policy explains that the app does <strong>not</strong> collect, store, or share any
+        personal data from its users.
+      </p>
+
+      <h2>Information We Do Not Collect</h2>
+      <p>
+        {appName} operates entirely on your device. The app:
+      </p>
+      <ul>
+        <li>Does <strong>not</strong> collect any personal information (name, email, phone number, address, etc.).</li>
+        <li>Does <strong>not</strong> track your usage, behavior, or preferences.</li>
+        <li>Does <strong>not</strong> use analytics services, crash reporting tools, or telemetry.</li>
+        <li>Does <strong>not</strong> access your contacts, calendar, photos, location, or any device sensors.</li>
+        <li>Does <strong>not</strong> require an internet connection to function &mdash; all content is stored locally on your device.</li>
+      </ul>
+
+      <h2>No Account Required</h2>
+      <p>
+        {appName} does not require you to create an account, sign in, or register in any way.
+        There are no user profiles, and we have no means of identifying individual users.
+      </p>
+
+      <h2>Third-Party Services</h2>
+      <p>
+        {appName} does not integrate any third-party services, SDKs, libraries, or APIs that
+        collect data. The app is self-contained and does not communicate with any external servers.
+      </p>
+
+      <h2>Data Storage</h2>
+      <p>
+        All study notes and app content are bundled with the app installation and stored locally
+        on your device. No data is written to external storage or transmitted over the network.
+        Uninstalling the app removes all associated local data.
+      </p>
+
+      <h2>Children's Privacy</h2>
+      <p>
+        {appName} is intended for individuals preparing for the AWS Solutions Architect Associate
+        certification. It does not knowingly collect any information from children under the age of 13.
+        Since no data is collected at all, children's privacy is inherently protected.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. Any changes will be posted on this
+        page with an updated revision date. We encourage you to review this policy periodically.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        If you have any questions or concerns about this Privacy Policy, please reach out via
+        the GitHub repository:
+      </p>
+      <p>
+        <a href={site.repoUrl} target="_blank" rel="noreferrer">{site.repoUrl}</a>
+      </p>
+
+      <hr />
+
+      <p><em>This Privacy Policy is provided for informational purposes and does not create any contractual or legal rights.</em></p>
+    </div>
+
+    <footer class="doc-footer">
+      <a class="doc-pager doc-pager--previous" href={withBase("/")}>
+        <ArrowLeft size={18} strokeWidth={2} />
+        <span>
+          <small>Back</small>
+          Study Dashboard
+        </span>
+      </a>
+    </footer>
+  </article>
+</BaseLayout>
