@@ -10,6 +10,8 @@ export default defineConfig({
   site: "https://techikrish.github.io",
   base: "/aws-sa-notes",
   output: "static",
+  // Astro 7 defaults to JSX whitespace handling; keep the v6 HTML behavior.
+  compressHTML: true,
   markdown: {
     processor: unified({
       remarkPlugins: [remarkGfm],
@@ -35,12 +37,32 @@ export default defineConfig({
   vite: {
     plugins: [
       {
-         name: "serve-pagefind",
-         configureServer(server) {
-           const __dirname = new URL('.', import.meta.url).pathname;
-           const pagefindDir = path.join(__dirname, "node_modules", "pagefind", "dist");
+        name: "serve-pagefind",
+        configureServer(server) {
+          const __dirname = new URL(".", import.meta.url).pathname;
+          const pagefindDir = path.resolve(__dirname, "node_modules", "pagefind", "dist");
+
           server.middlewares.use("/pagefind", (req, res, next) => {
-            const filePath = path.join(pagefindDir, req.url);
+            let pathname;
+
+            try {
+              pathname = decodeURIComponent((req.url ?? "/").split("?")[0]);
+            } catch {
+              res.statusCode = 400;
+              res.end("Bad Request");
+              return;
+            }
+
+            const filePath = path.resolve(pagefindDir, `.${pathname}`);
+            const relativePath = path.relative(pagefindDir, filePath);
+
+            // Never serve files outside of Pagefind's dist directory.
+            if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
+              res.statusCode = 403;
+              res.end("Forbidden");
+              return;
+            }
+
             fs.stat(filePath, (err, stats) => {
               if (err || !stats.isFile()) {
                 return next();
